@@ -5,6 +5,9 @@ body {
     margin: 0;
     height: 100vh;
     background-image: url(img/10_background/el-pollo-loco.background.1.png);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center; 
 }
 
 h1 img{
