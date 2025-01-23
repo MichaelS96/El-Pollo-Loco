@@ -37,17 +37,19 @@ class MovableObject {
         });
     }
 
-draw(ctx){
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-}
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    }
 
-drawFrame(ctx){
-    ctx.beginPath();
-    ctx.lineWidth = '5';
-    ctx.strokeStyle = 'blue';
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
-}
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {  //Rahmen nur fuer die instancen gesetzt
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
 
     playAnimation(images) {
         let index = this.currentImage % images.length;
@@ -60,8 +62,8 @@ drawFrame(ctx){
         this.x += this.speed;
     }
 
-    moveLeft() {       
-            this.x -= this.speed;
+    moveLeft() {
+        this.x -= this.speed;
     }
 
     jump() {
