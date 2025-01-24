@@ -21,11 +21,11 @@ class statusBar extends DrawableObject {
     }
 
     // Funktion kann von aussen aufgerufen werden um den percentage einen neuen wert zu geben    
-    setPercentage(percentage){
+    setPercentage(percentage) {
         this.percentage = percentage; // => 0 - 5 
         let path = this.IMAGES_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
-    }  
+    }
 
     resolveImageIndex() {
         if (this.percentage == 100) {

@@ -1,10 +1,11 @@
-class MovableObject extends DrawableObject {   
+class MovableObject extends DrawableObject {
     speed = 0.25;
-    otherDirection = false;    
+    otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+
 
     applyGravity() {
         setInterval(() => {
@@ -16,7 +17,11 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 140;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 140;
+        }
     }
 
     //charakter.isColliding(chicken);
@@ -38,7 +43,7 @@ class MovableObject extends DrawableObject {
 
     itHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //diference in ms 
-        timepassed = timepassed / 1000;        
+        timepassed = timepassed / 1000;
         return timepassed < 0.75;
     }
 
