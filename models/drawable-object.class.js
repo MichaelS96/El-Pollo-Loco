@@ -1,4 +1,4 @@
-class drawableObject{
+class DrawableObject{
     x = 120;
     y = 280;
     height = 150;
@@ -12,6 +12,10 @@ class drawableObject{
         this.img.src = path;
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    }
+
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -20,7 +24,14 @@ class drawableObject{
         });
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {  //Rahmen nur fuer die instancen gesetzt
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
     }
+    
 };
