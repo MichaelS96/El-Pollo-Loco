@@ -7,6 +7,9 @@ const level1 = new Level(
         new Bottle,
     ],
     [
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
         new Chicken(),
         new Chicken(),
         new Chicken(),
