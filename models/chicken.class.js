@@ -1,6 +1,6 @@
 class Chicken extends MovableObject {
     
-    y = 320;
+    y = 330;
     height = 100;
     width = 90;
     IMAGES_WALKING = [
@@ -15,7 +15,7 @@ class Chicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 200 + Math.random() * 500; //spawnt die chicken zwischen 200 und 700
+        this.x = 400 + Math.random() * 1500; //spawnt die chicken zwischen 200 und 700
         this.speed = 0.15 + Math.random() * 0.75;
 
         this.animate();
