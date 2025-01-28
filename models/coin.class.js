@@ -14,13 +14,5 @@ class Coin extends MovableObject {
         this.y = 50 + Math.random() * 150;
     }
 
-    animate() {
-        setInterval(() => {
-            this.coinCollected();
-        }, 100);
-        setInterval(() => {
-            this.coinAnnimation();
-        }, 500);
-    }
 
 }
