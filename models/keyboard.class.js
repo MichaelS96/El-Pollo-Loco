@@ -4,5 +4,6 @@ class Keyboard {
     UP = false;
     DOWN = false;
     SPACE = false;
+    SPACE_SOLVED = false;
     D = false;
 }

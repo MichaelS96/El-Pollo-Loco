@@ -18,10 +18,12 @@ class MovableObject extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {
-            return true;
-        } else {
-            return this.y < 140;
+            return this.y <= 325;
         }
+        else{ 
+            return this.y <= 140;
+        } 
+        
     }
 
     //charakter.isColliding(chicken);
@@ -68,5 +70,12 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 25;
+    }
+
+    playAnimation(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 }
