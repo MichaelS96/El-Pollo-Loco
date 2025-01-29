@@ -84,6 +84,7 @@ class World {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawOffsetBoxes(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

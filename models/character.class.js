@@ -8,6 +8,13 @@ class Character extends MovableObject {
     world;
     walking_sound = new Audio('audio/sand_walking.mp3');
 
+    offset = {
+        top: 100,
+        bottom: 100,
+        right: 40,
+        left: 20,
+    }
+
     IMAGES_STANDING = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
         'img/2_character_pepe/1_idle/idle/I-2.png',

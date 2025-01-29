@@ -1,5 +1,5 @@
 class Chicken extends MovableObject {
-    
+
     y = 330;
     height = 100;
     width = 90;
@@ -9,7 +9,12 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
     currentImage = 0;
-
+    offset = {
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+    }
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');

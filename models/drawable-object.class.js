@@ -33,5 +33,15 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-    
+
+    drawOffsetBoxes(ctx) {
+        if (this instanceof Character) {  //Rahmen nur fuer die instancen gesetzt
+            ctx.beginPath();
+            ctx.lineWidth = "3";
+            ctx.strokeStyle = "red";
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.bottom, this.width - this.offset.right, this.height - this.offset.bottom);
+            ctx.stroke();
+        }
+    }
+
 };

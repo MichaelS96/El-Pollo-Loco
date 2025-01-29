@@ -1,5 +1,5 @@
 class SmallChicken extends MovableObject {
-    
+
     y = 370;
     height = 50;
     width = 45;
@@ -9,7 +9,12 @@ class SmallChicken extends MovableObject {
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
     currentImage = 0;
-
+    offset = {
+        top: 100,
+        bottom: 0,
+        right: 0,
+        left: 0,
+    }
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');

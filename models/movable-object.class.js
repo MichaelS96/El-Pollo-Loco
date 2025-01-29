@@ -5,6 +5,12 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    }
 
 
     applyGravity() {
@@ -20,18 +26,26 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return this.y <= 325;
         }
-        else{ 
+        else {
             return this.y <= 140;
-        } 
-        
+        }
+
     }
 
     //charakter.isColliding(chicken);
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
+        if (this instanceof Character) {
+            return this.x + 60 + this.width - 105 > mo.x &&
+                this.y + this.height > mo.y &&
+                this.x + 60 < mo.x + mo.width &&
+                this.y + 130 < mo.y + mo.height;
+        }
+        else {
+            return this.x + this.width > mo.x &&
+                this.y + this.height > mo.y &&
+                this.x < mo.x + mo.width &&
+                this.y < mo.y + mo.height;
+        }
     }
 
     hit() {
