@@ -38,16 +38,15 @@ class World {
         if (this.keyboard.SPACE && this.bottlesCollected > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+
+            let percentage = (this.bottlesCollected / 10) * 100;
             this.bottlesCollected--;
-    
-            let percentage = (this.bottlesCollected / 5) * 100;
-            if (percentage > 100) {
-                percentage = 100;
-            }
-    
             this.bottleStatusBar.setPercentage(percentage);
+
+            console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
     }
+
 
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
