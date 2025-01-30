@@ -29,6 +29,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithEnemies();
+            this.checkCollisionsWithEndBoss()
             this.checkCollisionsWithCoins();
             this.checkCollisionsWithBottle();
             this.checkThrowObjects();
@@ -55,6 +56,16 @@ class World {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with enemy! Character energy:', this.character.energy);
+            }
+        });
+    }
+
+    checkCollisionsWithEndBoss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+                console.log('Collision with EndBoss! Character energy:', this.character.energy);
             }
         });
     }
@@ -102,10 +113,11 @@ class World {
         this.addToMap(this.bossStatusBar);
         this.ctx.translate(this.camera_x, 0);
 
-        this.addToMap(this.character);
+        
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
