@@ -141,7 +141,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_STANDING);
                 this.standingTime += 300;
 
-                if (this.standingTime >= 10000) {
+                if (this.standingTime >= 15000) {
                     this.playAnimation(this.IMAGES_SLEEPING);
                 }
             }
