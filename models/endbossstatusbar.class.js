@@ -26,5 +26,4 @@ class BossStatusBar extends DrawableObject {
         let path = this.IMAGES_BOSS[index];
         this.img = this.imageCache[path];
     }
-
 }
