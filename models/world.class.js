@@ -8,6 +8,7 @@ class World {
     statusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     bottleStatusBar = new BottleStatusBar();
+    bossStatusBar = new BossStatusBar();
     throwableObjects = [];
     coinsCollected = 0;
     bottlesCollected = 0;
@@ -98,6 +99,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.bottleStatusBar);
+        this.addToMap(this.bossStatusBar);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
