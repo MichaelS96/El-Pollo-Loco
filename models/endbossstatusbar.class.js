@@ -8,7 +8,8 @@ class BossStatusBar extends DrawableObject {
         'img/7_statusbars/2_statusbar_endboss/orange/orange100.png',
     ];
 
-    percentage = 100
+    percentage = 100;
+    isVisible = false;
 
     constructor() {
         super();

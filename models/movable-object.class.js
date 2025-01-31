@@ -29,7 +29,6 @@ class MovableObject extends DrawableObject {
         else {
             return this.y <= 140;
         }
-
     }
 
     //charakter.isColliding(chicken);
@@ -50,6 +49,15 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    endBossHit() {
+        this.energy -= 100;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -84,12 +92,5 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 25;
-    }
-
-    playAnimation(images) {
-        let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
     }
 }

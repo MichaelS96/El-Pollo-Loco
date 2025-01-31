@@ -62,7 +62,7 @@ class World {
     checkCollisionsWithEndBoss() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss)) {
-                this.character.hit();
+                this.character.endBossHit();
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with EndBoss! Character energy:', this.character.energy);
             }
@@ -101,32 +101,34 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
         this.addObjectsToMap(this.level.clouds);
+        
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinStatusBar);
-        this.addToMap(this.bottleStatusBar);
-        this.addToMap(this.bossStatusBar);
+        this.addToMap(this.bottleStatusBar);   
+        if (this.bossStatusBar.isVisible) {
+            this.addToMap(this.bossStatusBar);
+        }    
         this.ctx.translate(this.camera_x, 0);
 
-        
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
-
         this.ctx.translate(-this.camera_x, 0);
-
+    
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
+    
 
     addObjectsToMap(objects) {
         objects.forEach(o => {

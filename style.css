@@ -4,14 +4,14 @@ body {
     align-items: center;
     margin: 0;
     height: 100vh;
-    background-image: url(img/10_background/background-el-pollo-loco.jpg);
+    background-image: url(img/10_background/new-background.jpg);
     background-size: cover;
     background-repeat: no-repeat; 
     background-position: center; 
 }
 
 h1 img{
-    height: 220px;
+    height: 150px;
 }
 
 canvas {
