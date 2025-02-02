@@ -31,7 +31,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    //charakter.isColliding(chicken);
     isColliding(mo) {
         if (this instanceof Character) {
             return this.x + 60 + this.width - 105 > mo.x &&
@@ -45,8 +44,8 @@ class MovableObject extends DrawableObject {
                 this.x < mo.x + mo.width &&
                 this.y < mo.y + mo.height;
         }
-    }
-
+        
+    } 
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {

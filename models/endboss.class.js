@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
     y = 50;
     hasFirstContact = false;
     currentAnimationFrame = 0;
+    energy = 100;
     offset = {
         top: 0,
         left: 0,
@@ -117,11 +118,21 @@ class Endboss extends MovableObject {
             console.log("First Contact with Endboss");
             this.currentAnimationFrame = 0;
             this.hasFirstContact = true;
-            world.bossStatusBar.isVisible = true; // Statusbar sichtbar machen
+            world.bossStatusBar.isVisible = true; 
         }
     }
 
     moveLeft() {
         this.x -= 1.5;
+    }
+
+    hit() {
+        this.energy -= 20;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        world.bossStatusBar.setPercentage(this.energy); 
     }
 }

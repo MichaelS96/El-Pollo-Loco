@@ -34,10 +34,28 @@ class World {
             this.checkCollisionsWithCoins();
             this.checkCollisionsWithBottle();
             this.checkThrowObjects();
-            this.checkCollisionJumpOnEnemy(); // Neue Methode hinzufügen
+            this.checkCollisionJumpOnEnemy();
+            this.checkCollisionBottleFinalboss();
         }, 200);
     }
 
+    checkCollisionBottleFinalboss() {
+        this.throwableObjects.forEach((bottle, index) => {
+            this.level.endboss.forEach((endboss) => {
+                if (endboss.isColliding(bottle)) {
+                    endboss.hit();
+                    bottle.isColliding = true;
+                    setTimeout(() => {
+                        this.throwableObjects.splice(index, 1); 
+                    }, 200);
+
+                    if (!this.bossStatusBar.isVisible) {
+                        this.bossStatusBar.isVisible = true; 
+                    }
+                }
+            });
+        });
+    }
 
     checkThrowObjects() {
         let currentTime = Date.now();
