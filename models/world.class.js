@@ -12,6 +12,7 @@ class World {
     throwableObjects = [];
     coinsCollected = 0;
     bottlesCollected = 0;
+    lastThrowTime = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,21 +30,27 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsWithEnemies();
-            this.checkCollisionsWithEndBoss()
+            this.checkCollisionsWithEndBoss();
             this.checkCollisionsWithCoins();
             this.checkCollisionsWithBottle();
             this.checkThrowObjects();
+            this.checkCollisionJumpOnEnemy(); // Neue Methode hinzufügen
         }, 200);
     }
 
+
     checkThrowObjects() {
-        if (this.keyboard.SPACE && this.bottlesCollected > 0) {
+        let currentTime = Date.now();
+
+        if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 2000)) { 
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
 
             let percentage = (this.bottlesCollected / 10) * 100;
             this.bottlesCollected--;
             this.bottleStatusBar.setPercentage(percentage);
+
+            this.lastThrowTime = currentTime; 
 
             console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
@@ -52,9 +59,13 @@ class World {
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-                console.log('Collision with enemy! Character energy:', this.character.energy);
+                if (this.character.y + this.character.height - 100 < enemy.y) {  // checken ob char von oben kommt 
+                    console.log('Character jumped on enemy!');
+                } else {                    
+                    this.character.hit(); // seitliche treffer beibehalten
+                    this.statusBar.setPercentage(this.character.energy);
+                    console.log('Collision with enemy! Character energy:', this.character.energy);
+                }
             }
         });
     }
@@ -99,20 +110,32 @@ class World {
         });
     }
 
+    checkCollisionJumpOnEnemy() {
+        this.level.enemies.forEach(enemy => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                if (!enemy.isDead) { 
+                    this.character.hitEnemy();
+                    enemy.die(); 
+                    console.log('Chicken killed by jumping on it!');
+                }
+            }
+        });
+    }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObject);
         this.addObjectsToMap(this.level.clouds);
-        
+
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinStatusBar);
-        this.addToMap(this.bottleStatusBar);   
+        this.addToMap(this.bottleStatusBar);
         if (this.bossStatusBar.isVisible) {
             this.addToMap(this.bossStatusBar);
-        }    
+        }
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.coins);
@@ -122,13 +145,13 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
-    
+
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
-    
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => {

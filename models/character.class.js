@@ -151,4 +151,12 @@ class Character extends MovableObject {
     jump() {
         this.speedY = 30;
     }
+
+    hitEnemy() {
+        this.speedY = 20; //kleiner jump nach hit an enemy
+    }
+
+    isAboveGround() {
+        return this.y < 140;
+    }
 }

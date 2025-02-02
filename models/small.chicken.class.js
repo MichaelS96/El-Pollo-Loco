@@ -20,7 +20,7 @@ class SmallChicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
 
-        this.x = 400 + Math.random() * 1500; //spawnt die chicken zwischen 200 und 1500
+        this.x = 400 + Math.random() * 1500; //spawnt die chicken zwischen 400 und 1500
         this.speed = 0.15 + Math.random() * 0.75;
 
         this.animate();
