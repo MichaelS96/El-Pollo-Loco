@@ -134,7 +134,7 @@ class World {
                 if (!enemy.isDead) { 
                     this.character.hitEnemy();
                     enemy.die(); 
-                    console.log('Chicken killed by jumping on it!');
+                    console.log('Enemy killed by jumping on it!');
                 }
             }
         });

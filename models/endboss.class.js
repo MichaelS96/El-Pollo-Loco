@@ -83,7 +83,7 @@ class Endboss extends MovableObject {
 
     playBossAnimation() {
         if (this.isDead()) {
-            console.log("Endboss is dead");
+            this.playDeadAnimation(); // Fügen Sie diese Methode hinzu
         } else if (this.itHurt()) {
             this.playHurtAnimation();
         } else if (this.currentAnimationFrame < 15) {
@@ -113,12 +113,16 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_WALK);
     }
 
+    playDeadAnimation() {
+        this.playAnimation(this.IMAGES_DEAD);
+    }
+
     checkFirstContact() {
         if (world.character.x > 1700 && !this.hasFirstContact) {
             console.log("First Contact with Endboss");
             this.currentAnimationFrame = 0;
             this.hasFirstContact = true;
-            world.bossStatusBar.isVisible = true; 
+            world.bossStatusBar.isVisible = true;
         }
     }
 
@@ -133,6 +137,6 @@ class Endboss extends MovableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-        world.bossStatusBar.setPercentage(this.energy); 
+        world.bossStatusBar.setPercentage(this.energy);
     }
 }

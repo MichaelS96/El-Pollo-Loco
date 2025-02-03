@@ -25,7 +25,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof SmallChicken || this instanceof ThrowableObject) {  //Rahmen nur fuer die instancen gesetzt
+        if (this instanceof Character || this instanceof ThrowableObject) {  //Rahmen nur fuer die instancen gesetzt
             ctx.beginPath();
             ctx.lineWidth = '4';
             ctx.strokeStyle = 'blue';
@@ -35,7 +35,7 @@ class DrawableObject {
     }
 
     drawOffsetBoxes(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Bottle) {  //Rahmen nur fuer die instancen gesetzt
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Bottle || this instanceof SmallChicken) {  //Rahmen nur fuer die instancen gesetzt
             ctx.beginPath();
             ctx.lineWidth = "3";
             ctx.strokeStyle = "red";
