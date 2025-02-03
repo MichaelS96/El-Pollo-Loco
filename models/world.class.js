@@ -46,11 +46,11 @@ class World {
                     endboss.hit();
                     bottle.isColliding = true;
                     setTimeout(() => {
-                        this.throwableObjects.splice(index, 1); 
+                        this.throwableObjects.splice(index, 1);
                     }, 200);
 
                     if (!this.bossStatusBar.isVisible) {
-                        this.bossStatusBar.isVisible = true; 
+                        this.bossStatusBar.isVisible = true;
                     }
                 }
             });
@@ -60,18 +60,34 @@ class World {
     checkThrowObjects() {
         let currentTime = Date.now();
 
-        if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 2000)) { 
+        if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 2000)) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
 
-            let percentage = (this.bottlesCollected / 10) * 100;
             this.bottlesCollected--;
+            let percentage = this.bottlesCollected * 20; 
+            if (percentage < 0) percentage = 0;
             this.bottleStatusBar.setPercentage(percentage);
 
-            this.lastThrowTime = currentTime; 
+            this.lastThrowTime = currentTime;
 
             console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
+    }
+
+    checkCollisionsWithBottle() {
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                this.level.bottles.splice(index, 1);
+                this.bottlesCollected++;
+                let percentage = this.bottlesCollected * 20;
+                if (percentage > 100) {
+                    percentage = 100;
+                }
+                this.bottleStatusBar.setPercentage(percentage);
+                console.log('Bottle collected!', this.bottlesCollected);
+            }
+        });
     }
 
     checkCollisionsWithEnemies() {
@@ -79,7 +95,7 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.y + this.character.height - 100 < enemy.y) {  // checken ob char von oben kommt 
                     console.log('Character jumped on enemy!');
-                } else {                    
+                } else {
                     this.character.hit(); // seitliche treffer beibehalten
                     this.statusBar.setPercentage(this.character.energy);
                     console.log('Collision with enemy! Character energy:', this.character.energy);
@@ -113,27 +129,12 @@ class World {
         });
     }
 
-    checkCollisionsWithBottle() {
-        this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle)) {
-                this.level.bottles.splice(index, 1);
-                this.bottlesCollected++;
-                let percentage = this.bottlesCollected * 10; // 
-                if (percentage > 100) {
-                    percentage = 100;
-                }
-                this.bottleStatusBar.setPercentage(percentage);
-                console.log('Bottle collected!', this.bottlesCollected);
-            }
-        });
-    }
-
     checkCollisionJumpOnEnemy() {
         this.level.enemies.forEach(enemy => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                if (!enemy.isDead) { 
+                if (!enemy.isDead) {
                     this.character.hitEnemy();
-                    enemy.die(); 
+                    enemy.die();
                     console.log('Enemy killed by jumping on it!');
                 }
             }

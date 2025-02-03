@@ -4,6 +4,12 @@ class SmallChicken extends MovableObject {
     width = 45;
     energy = 1;
     isDead = false;
+    offset = {
+        top: -50,
+        bottom: 0,
+        right: -20,
+        left: -20,
+    };
 
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -13,13 +19,6 @@ class SmallChicken extends MovableObject {
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
-
-    offset = {
-        top: -30,
-        bottom: 0,
-        right: 0,
-        left: 0,
-    };
 
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
