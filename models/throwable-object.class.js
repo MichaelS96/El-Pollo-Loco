@@ -27,7 +27,8 @@ class ThrowableObject extends MovableObject {
         this.width = 80;
         this.throw();
         this.animate();
-        
+        this.splashSound = new Audio('audio/broken_bottle.mp3');
+        this.splashSound.volume = 0.2;
     }
 
     throw() {
@@ -51,6 +52,7 @@ class ThrowableObject extends MovableObject {
     
             if (!this.splashTimerStarted) {
                 this.splashTimerStarted = true;
+                this.splashSound.play();
                 setTimeout(() => {
                     this.y = 1000;
                 }, 100);

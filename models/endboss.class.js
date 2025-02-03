@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
     hasFirstContact = false;
     currentAnimationFrame = 0;
     energy = 100;
+    damageSound = new Audio('audio/endboss_dmg.mp3');
     offset = {
         top: 0,
         left: 0,
@@ -62,6 +63,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2275;
         this.animate();
+        this.damageSound.volume = 0.1;
     }
 
     animate() {
@@ -76,14 +78,14 @@ class Endboss extends MovableObject {
 
         setInterval(() => {
             if (this.itHurt()) {
-                //sound for dmg
+                this.playDamageSound();
             }
         }, 100);
     }
 
     playBossAnimation() {
         if (this.isDead()) {
-            this.playDeadAnimation(); // Fügen Sie diese Methode hinzu
+            this.playDeadAnimation();
         } else if (this.itHurt()) {
             this.playHurtAnimation();
         } else if (this.currentAnimationFrame < 15) {
@@ -117,6 +119,12 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
     }
 
+    playDamageSound() {
+        if (this.damageSound) {
+            this.damageSound.play();
+        }
+    }
+
     checkFirstContact() {
         if (world.character.x > 1700 && !this.hasFirstContact) {
             console.log("First Contact with Endboss");
@@ -138,5 +146,6 @@ class Endboss extends MovableObject {
             this.lastHit = new Date().getTime();
         }
         world.bossStatusBar.setPercentage(this.energy);
+        this.playDamageSound();
     }
 }

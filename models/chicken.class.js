@@ -1,5 +1,5 @@
 class Chicken extends MovableObject {
-    y = 330;
+    y = 320;
     height = 100;
     width = 90;
     energy = 1;
@@ -26,25 +26,25 @@ class Chicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-
         this.x = 400 + Math.random() * 1500;
         this.speed = 0.15 + Math.random() * 0.75;
-
         this.animate();
+        this.deathSound = new Audio('audio/chicken_death.mp3');
+        this.deathSound.volume = 0.2;
     }
 
     animate() {
         setInterval(() => {
-            if (!this.isDead) { // Nur bewegen, wenn das Chicken noch lebt
+            if (!this.isDead) { 
                 this.moveLeft();
             }
         }, 1000 / 60);
 
         setInterval(() => {
-            if (!this.isDead) { // Animation nur abspielen, wenn es lebt
+            if (!this.isDead) { 
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
-                this.playAnimation(this.IMAGES_DEAD); // Totes Chicken anzeigen
+                this.playAnimation(this.IMAGES_DEAD); 
             }
         }, 175);
     }
@@ -58,18 +58,18 @@ class Chicken extends MovableObject {
     }
 
     die() {
-        this.isDead = true; // Setzt das Chicken auf tot
-        this.speed = 0; // Stoppt die Bewegung
+        this.isDead = true; 
+        this.speed = 0; 
         this.playAnimation(this.IMAGES_DEAD);
-        
+        this.deathSound.play();
         setTimeout(() => {
-            this.removeFromWorld(); // Entfernt das Chicken nach 500 ms
+            this.removeFromWorld(); 
         }, 500);
     }
 
     removeFromWorld() {
         const index = world.level.enemies.indexOf(this);
-        if (index !== -1) { // Sicherstellen, dass das Chicken existiert
+        if (index !== -1) { 
             world.level.enemies.splice(index, 1);
         }
     }

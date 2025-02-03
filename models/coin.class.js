@@ -1,5 +1,4 @@
 class Coin extends MovableObject {
-
     width = 120;
     height = 120;
     offset = {
@@ -20,6 +19,8 @@ class Coin extends MovableObject {
         this.x = x;
         this.y = y;
         this.animate();
+        this.coinSound = new Audio('audio/coin_collected.mp3');
+        this.coinSound.volume = 0.2;
     }
 
     animate() {

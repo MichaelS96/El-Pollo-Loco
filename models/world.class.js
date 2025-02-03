@@ -65,7 +65,7 @@ class World {
             this.throwableObjects.push(bottle);
 
             this.bottlesCollected--;
-            let percentage = this.bottlesCollected * 20; 
+            let percentage = this.bottlesCollected * 20;
             if (percentage < 0) percentage = 0;
             this.bottleStatusBar.setPercentage(percentage);
 
@@ -86,6 +86,7 @@ class World {
                 }
                 this.bottleStatusBar.setPercentage(percentage);
                 console.log('Bottle collected!', this.bottlesCollected);
+                bottle.bottleSound.play();
             }
         });
     }
@@ -125,6 +126,7 @@ class World {
                 }
                 this.coinStatusBar.setPercentage(percentage);
                 console.log('Coin collected!', this.coinsCollected);
+                coin.coinSound.play();
             }
         });
     }

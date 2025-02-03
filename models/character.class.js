@@ -6,7 +6,8 @@ class Character extends MovableObject {
     speed = 5;
     standingTime = 0;
     world;
-    walking_sound = new Audio('audio/sand_walking.mp3');
+    walkingSound = new Audio('audio/sand_walking.mp3');
+    jumpSound = new Audio('audio/jump.mp3');
 
     offset = {
         top: 100,
@@ -88,6 +89,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
+        this.jumpSound.volume = 0.2;
     }
 
     animate() {
@@ -101,24 +103,25 @@ class Character extends MovableObject {
     }
 
     characterMoving() {
-        this.walking_sound.pause();
-        this.walking_sound.volume = 0.05;
+        this.walkingSound.pause();
+        this.walkingSound.volume = 0.05;
 
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
             this.otherDirection = false;
-            this.walking_sound.play();
+            this.walkingSound.play();
             this.standingTime = 0;
         }
         if (this.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
-            this.walking_sound.play();
+            this.walkingSound.play();
             this.standingTime = 0;
         }
         if (this.world.keyboard.UP && !this.isAboveGround()) {
             this.jump();
             this.standingTime = 0;
+            this.jumpSound.play();
         }
 
         this.world.camera_x = -this.x + 120;

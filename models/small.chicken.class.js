@@ -1,7 +1,7 @@
 class SmallChicken extends MovableObject {
-    y = 360;
-    height = 50;
-    width = 45;
+    y = 340;
+    height = 80;
+    width = 65;
     energy = 1;
     isDead = false;
     offset = {
@@ -24,11 +24,11 @@ class SmallChicken extends MovableObject {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-
         this.x = 400 + Math.random() * 1500;
         this.speed = 0.15 + Math.random() * 0.75;
-
         this.animate();
+        this.deathSound = new Audio('audio/chicken_death.mp3');
+        this.deathSound.volume = 0.2;
     }
 
     animate() {
@@ -59,7 +59,7 @@ class SmallChicken extends MovableObject {
         this.isDead = true;
         this.speed = 0;
         this.playAnimation(this.IMAGES_DEAD);
-
+        this.deathSound.play();
         setTimeout(() => {
             this.removeFromWorld();
         }, 500);
