@@ -2,13 +2,29 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-
-    console.log('My Character is', world.character)
+function startGame() {
+    document.getElementById("startScreen").classList.add("d-none");
+    if (!world) {
+        init(); 
+    }
+    hideLoadScreen();
 }
 
+function init() {
+    loadLevel();    
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+}
+
+async function newGame() {
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard); 
+    loadLevel(); 
+}
+
+function hideLoadScreen() {
+    document.getElementById("content").classList.remove("d-none");
+}
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

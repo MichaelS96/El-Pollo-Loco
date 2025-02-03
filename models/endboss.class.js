@@ -90,6 +90,7 @@ class Endboss extends MovableObject {
             this.playHurtAnimation();
         } else if (this.currentAnimationFrame < 15) {
             this.playAlertAnimation();
+            this.currentAnimationFrame += 4;
         } else if (this.currentAnimationFrame < 30) {
             this.playAttackAnimation();
         } else {

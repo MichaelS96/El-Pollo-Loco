@@ -94,10 +94,10 @@ class World {
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.y + this.character.height - 100 < enemy.y) {  // checken ob char von oben kommt 
+                if (this.character.y + this.character.height - 100 < enemy.y) {
                     console.log('Character jumped on enemy!');
                 } else {
-                    this.character.hit(); // seitliche treffer beibehalten
+                    this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                     console.log('Collision with enemy! Character energy:', this.character.energy);
                 }
@@ -147,7 +147,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObject);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
@@ -185,8 +185,8 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
-        mo.drawOffsetBoxes(this.ctx);
+        //mo.drawFrame(this.ctx);
+        //mo.drawOffsetBoxes(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
