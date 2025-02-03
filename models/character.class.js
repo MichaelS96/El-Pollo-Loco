@@ -8,6 +8,7 @@ class Character extends MovableObject {
     world;
     walkingSound = new Audio('audio/sand_walking.mp3');
     jumpSound = new Audio('audio/jump.mp3');
+    hurtSound = new Audio('audio/hurt.mp3');  // Hurt-Sound erstellen
 
     offset = {
         top: 100,
@@ -90,6 +91,8 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.jumpSound.volume = 0.2;
+        this.hurtSound.volume = 0.3;
+        
     }
 
     animate() {
@@ -133,6 +136,9 @@ class Character extends MovableObject {
         } else if (this.itHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.standingTime = 0;
+            if (this.hurtSound) {
+                this.hurtSound.play();
+            }
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
             this.standingTime = 0;
@@ -156,7 +162,7 @@ class Character extends MovableObject {
     }
 
     hitEnemy() {
-        this.speedY = 20; //kleiner jump nach hit an enemy
+        this.speedY = 20;
     }
 
     isAboveGround() {
