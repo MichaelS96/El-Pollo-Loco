@@ -50,6 +50,22 @@ canvas {
     background-color: #F0D4A3;
 }
 
+#gameOverScreen img {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
 .d-none {
     display: none;
 }

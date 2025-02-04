@@ -91,8 +91,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.jumpSound.volume = 0.2;
-        this.hurtSound.volume = 0.3;
-        
+        this.hurtSound.volume = 0.1;
     }
 
     animate() {
@@ -133,6 +132,7 @@ class Character extends MovableObject {
     characterAnimation() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
+            this.showGameOverScreen();
         } else if (this.itHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.standingTime = 0;
@@ -149,12 +149,16 @@ class Character extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_STANDING);
                 this.standingTime += 300;
-
+    
                 if (this.standingTime >= 15000) {
                     this.playAnimation(this.IMAGES_SLEEPING);
                 }
             }
         }
+    }
+    
+    isDead() {
+        return this.energy <= 0;
     }
 
     jump() {
@@ -167,5 +171,13 @@ class Character extends MovableObject {
 
     isAboveGround() {
         return this.y < 140;
+    }
+
+    showGameOverScreen() {
+        setTimeout(() => {
+            let gameOverScreen = document.getElementById("gameOverScreen");
+            gameOverScreen.classList.remove("d-none");
+            gameOverScreen.style.position = "absolute";
+        }, 500); 
     }
 }

@@ -8,6 +8,9 @@ function loadTemplate() {
                     <img src="img/startscreen/startscreen.png" alt="StartScreen">
                     <button class="start-button" onclick="startGame()">Start</button>
                 </div>
+                <div id="gameOverScreen" class="d-none">
+                    <img src="img/9_intro_outro_screens/game_over/game-over.png" alt="GameOverScreen">
+                </div>
             </div>
             <div>
                 <canvas id="canvas" width="720" height="480"></canvas>
