@@ -29,6 +29,7 @@ class World {
 
     run() {
         setInterval(() => {
+            if (!gameRunning) return;
             this.checkCollisionsWithEnemies();
             this.checkCollisionsWithEndBoss();
             this.checkCollisionsWithCoins();
@@ -94,7 +95,7 @@ class World {
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.y + this.character.height - 100 < enemy.y) {
+                if (this.character.y + this.character.height - 20 < enemy.y) {
                     console.log('Character jumped on enemy!');
                 } else {
                     this.character.hit();
@@ -144,6 +145,7 @@ class World {
     }
 
     draw() {
+        if (!gameRunning) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);

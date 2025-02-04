@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameRunning = true;
 
 function startGame() {
     document.getElementById("startScreen").classList.add("d-none");

@@ -96,18 +96,24 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.characterMoving();
+            if (gameRunning) {
+                this.characterMoving();
+            }
         }, 1000 / 60);
-
+    
         setInterval(() => {
-            this.characterAnimation();
+            if (gameRunning) {
+                this.characterAnimation();
+            }
         }, 100);
     }
-
+    
     characterMoving() {
+        if (!gameRunning) return;
+    
         this.walkingSound.pause();
         this.walkingSound.volume = 0.05;
-
+    
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
             this.otherDirection = false;
@@ -125,7 +131,7 @@ class Character extends MovableObject {
             this.standingTime = 0;
             this.jumpSound.play();
         }
-
+    
         this.world.camera_x = -this.x + 120;
     }
 
@@ -178,6 +184,7 @@ class Character extends MovableObject {
             let gameOverScreen = document.getElementById("gameOverScreen");
             gameOverScreen.classList.remove("d-none");
             gameOverScreen.style.position = "absolute";
-        }, 500); 
+            gameRunning = false;  
+        }, 1000); 
     }
 }
