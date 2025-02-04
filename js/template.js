@@ -12,6 +12,10 @@ function loadTemplate() {
                     <img src="img/9_intro_outro_screens/game_over/game-over.png" alt="GameOverScreen">
                     <button class="restart-button" onclick="restartGame()">Neustart</button>
                 </div>
+                <div id="gameWinScreen" class="d-none">
+                    <img src="img/9_intro_outro_screens/win/won_2.png" alt="GameWinScreen">
+                    <button class="restart-button" onclick="restartGame()">Neustart</button>
+                </div>
             </div>
             <div>
                 <canvas id="canvas" width="720" height="480"></canvas>

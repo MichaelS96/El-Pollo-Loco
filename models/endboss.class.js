@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
                 this.moveLeft();
             }
         }, 1000 / 120);
-
+    
         setInterval(() => {
             if (this.itHurt()) {
                 this.playDamageSound();
@@ -86,6 +86,7 @@ class Endboss extends MovableObject {
     playBossAnimation() {
         if (this.isDead()) {
             this.playDeadAnimation();
+            this.showGameWinScreen(); // Hier wird der Gewinn-Bildschirm angezeigt
         } else if (this.itHurt()) {
             this.playHurtAnimation();
         } else if (this.currentAnimationFrame < 15) {
@@ -149,4 +150,14 @@ class Endboss extends MovableObject {
         world.bossStatusBar.setPercentage(this.energy);
         this.playDamageSound();
     }
+
+    showGameWinScreen() {
+        setTimeout(() => {
+            let gameWinScreen = document.getElementById("gameWinScreen");
+            gameWinScreen.classList.remove("d-none");
+            gameWinScreen.style.position = "absolute";
+            gameRunning = false;  
+        }, 1000); 
+    }
+
 }

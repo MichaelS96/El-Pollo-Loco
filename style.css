@@ -66,6 +66,23 @@ canvas {
     align-items: center;
 }
 
+#gameWinScreen img {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
+
+#gameWinScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
 .restart-button {
     position: absolute;
     top: -155px;

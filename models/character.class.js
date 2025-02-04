@@ -187,4 +187,5 @@ class Character extends MovableObject {
             gameRunning = false;  
         }, 1000); 
     }
+    
 }
