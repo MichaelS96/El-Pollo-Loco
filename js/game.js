@@ -27,6 +27,10 @@ function hideLoadScreen() {
     document.getElementById("content").classList.remove("d-none");
 }
 
+function restartGame() {
+    location.reload();
+}
+
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;

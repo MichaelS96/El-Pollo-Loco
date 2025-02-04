@@ -95,7 +95,7 @@ class World {
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.y + this.character.height - 20 < enemy.y) {
+                if (this.character.y + this.character.height - 80 < enemy.y) {
                     console.log('Character jumped on enemy!');
                 } else {
                     this.character.hit();
