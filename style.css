@@ -103,6 +103,36 @@ canvas {
     background-color: #F0D4A3;
 }
 
+.layout img {
+    width: 50px;
+}
+
+.layout {
+    background-color: rgba(255, 255, 255, 0.295);
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 100px;
+    font-size: 20px;
+}
+
+.left div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.right div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
 .d-none {
     display: none;
 }

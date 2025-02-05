@@ -20,6 +20,30 @@ function loadTemplate() {
             <div>
                 <canvas id="canvas" width="720" height="480"></canvas>
             </div>
+
+            <div class="layout">
+                <div class="left">
+                    <div>
+                        <img src="/img/icons/moveLeft.png" alt="move-left btn" >
+                        <b>Move Left</b>
+                    </div>
+                    <div>
+                        <img src="/img/icons/moveRight.png" alt="move-right btn" >
+                        <b>Move Right</b>
+                    </div>
+                </div>
+                <div class="right">
+                    <div>
+                        <img src="/img/icons/jump.png" alt="jump btn" >
+                        <b>Jump</b>
+                    </div>
+                    <div>
+                        <img src="/img/icons/space.png" alt="space btn">
+                        <b>Throw bottle</b>
+                    </div>
+                </div>
+            </div>
+
         </div>
     `;
 }
