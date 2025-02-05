@@ -1,4 +1,6 @@
 class BottleStatusBar extends DrawableObject {
+    percentage = 0;
+    
     IMAGES_BOTTLE = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
@@ -7,8 +9,6 @@ class BottleStatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png',
     ];
-
-    percentage = 0;
 
     constructor() {
         super();

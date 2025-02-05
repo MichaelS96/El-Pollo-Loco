@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
     currentAnimationFrame = 0;
     energy = 100;
     damageSound = new Audio('audio/endboss_dmg.mp3');
+    
     offset = {
         top: 0,
         left: 0,
@@ -75,7 +76,7 @@ class Endboss extends MovableObject {
                 this.moveLeft();
             }
         }, 1000 / 120);
-    
+
         setInterval(() => {
             if (this.itHurt()) {
                 this.playDamageSound();
@@ -156,8 +157,8 @@ class Endboss extends MovableObject {
             let gameWinScreen = document.getElementById("gameWinScreen");
             gameWinScreen.classList.remove("d-none");
             gameWinScreen.style.position = "absolute";
-            gameRunning = false;  
-        }, 1000); 
+            gameRunning = false;
+        }, 1000);
     }
 
 }

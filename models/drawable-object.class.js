@@ -13,7 +13,7 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     loadImages(arr) {
@@ -25,7 +25,8 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof ThrowableObject) {  //Rahmen nur fuer die instancen gesetzt
+        if (this instanceof Character || this instanceof ThrowableObject) {
+            // Rahmen nur fuer die Instanzen gesetzt
             ctx.beginPath();
             ctx.lineWidth = '4';
             ctx.strokeStyle = 'blue';
@@ -35,10 +36,11 @@ class DrawableObject {
     }
 
     drawOffsetBoxes(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Bottle || this instanceof SmallChicken) {  //Rahmen nur fuer die instancen gesetzt
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Bottle || this instanceof SmallChicken) {
+            // Rahmen nur fuer die Instanzen gesetzt
             ctx.beginPath();
-            ctx.lineWidth = "3";
-            ctx.strokeStyle = "red";
+            ctx.lineWidth = '3';
+            ctx.strokeStyle = 'red';
             ctx.rect(this.x + this.offset.left, this.y + this.offset.bottom, this.width - this.offset.right, this.height - this.offset.bottom);
             ctx.stroke();
         }
@@ -52,4 +54,4 @@ class DrawableObject {
         if (this.percentage >= 20) return 1;
         return 0;
     }
-};
+}

@@ -4,6 +4,7 @@ class SmallChicken extends MovableObject {
     width = 65;
     energy = 1;
     isDead = false;
+    
     offset = {
         top: -30,
         bottom: 0,

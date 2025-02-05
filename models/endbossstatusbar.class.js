@@ -1,4 +1,7 @@
 class BossStatusBar extends DrawableObject {
+    percentage = 100;
+    isVisible = false;
+    
     IMAGES_BOSS = [
         'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
         'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
@@ -7,9 +10,6 @@ class BossStatusBar extends DrawableObject {
         'img/7_statusbars/2_statusbar_endboss/orange/orange80.png',
         'img/7_statusbars/2_statusbar_endboss/orange/orange100.png',
     ];
-
-    percentage = 100;
-    isVisible = false;
 
     constructor() {
         super();
