@@ -92,6 +92,7 @@ class Character extends MovableObject {
         this.animate();
         this.jumpSound.volume = 0.2;
         this.hurtSound.volume = 0.1;
+        this.energy = 100;  // Initialisiere die Lebensenergie beim Erstellen des Charakters
     }
 
     animate() {
@@ -100,20 +101,20 @@ class Character extends MovableObject {
                 this.characterMoving();
             }
         }, 1000 / 60);
-    
+
         setInterval(() => {
             if (gameRunning) {
                 this.characterAnimation();
             }
         }, 100);
     }
-    
+
     characterMoving() {
         if (!gameRunning) return;
-    
+
         this.walkingSound.pause();
         this.walkingSound.volume = 0.05;
-    
+
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
             this.otherDirection = false;
@@ -131,7 +132,7 @@ class Character extends MovableObject {
             this.standingTime = 0;
             this.jumpSound.play();
         }
-    
+
         this.world.camera_x = -this.x + 120;
     }
 
@@ -155,14 +156,14 @@ class Character extends MovableObject {
             } else {
                 this.playAnimation(this.IMAGES_STANDING);
                 this.standingTime += 300;
-    
+
                 if (this.standingTime >= 15000) {
                     this.playAnimation(this.IMAGES_SLEEPING);
                 }
             }
         }
     }
-    
+
     isDead() {
         return this.energy <= 0;
     }
@@ -184,8 +185,8 @@ class Character extends MovableObject {
             let gameOverScreen = document.getElementById("gameOverScreen");
             gameOverScreen.classList.remove("d-none");
             gameOverScreen.style.position = "absolute";
-            gameRunning = false;  
-        }, 1000); 
+            gameRunning = false;
+        }, 1000);
     }
-    
+
 }
