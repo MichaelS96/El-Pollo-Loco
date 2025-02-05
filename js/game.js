@@ -17,11 +17,12 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-async function newGame() {
+function newGame() {
+    clearAllIntervals(); // Stoppe alle laufenden Intervalle
     removeAllEnemies();  // Entferne alle Gegner vor der Neuinitialisierung des Spiels
+    loadLevel();  // Die Spielfigur und andere Objekte werden neu geladen
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
-    loadLevel();  // Die Spielfigur und andere Objekte werden neu geladen
     resetCharacter();  // Gesundheitszustand des Charakters zurücksetzen
 }
 
@@ -48,6 +49,10 @@ function removeAllEnemies() {
     }
 }
 
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 function hideLoadScreen() {
     document.getElementById("content").classList.remove("d-none");
 }
@@ -56,11 +61,11 @@ function restartGame() {
     document.getElementById("gameOverScreen").classList.add("d-none");
     document.getElementById("gameWinScreen").classList.add("d-none");
     gameRunning = true;  // Setze den Status des Spiels
+    clearAllIntervals(); // Stoppe alle laufenden Intervalle
     resetCharacter();  // Setze den Zustand des Charakters zurück
     removeAllEnemies();  // Entferne alle Gegner vor der Neuinitialisierung des Spiels
     newGame();  // Neuer Spielzustand initialisieren
 }
-
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
