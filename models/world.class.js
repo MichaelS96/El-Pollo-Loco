@@ -40,6 +40,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollisionJumpOnEnemy();
             this.checkCollisionBottleFinalboss();
+            this.checkCollisionWithBottleAndEnemies();
         }, 200);
     }
 
@@ -114,6 +115,24 @@ class World {
                 enemy.die();
                 console.log('Enemy killed by jumping on it!');
             }
+        });
+    }
+
+    checkCollisionWithBottleAndEnemies() {
+        this.throwableObjects.forEach((bottle, bottleIndex) => {
+            this.level.enemies.forEach((enemy) => {
+                if (enemy.isColliding(bottle)) {
+                    enemy.hit();
+                    bottle.isColliding = true;
+
+                    setTimeout(() => {
+                        this.throwableObjects.splice(bottleIndex, 1);
+                    }, 200);
+
+                    console.log('Flasche trifft Feind!', enemy);
+
+                }
+            });
         });
     }
 
