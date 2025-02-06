@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 0;
     height: 100vh;
     background-image: url(img/10_background/new-background.jpg);
@@ -20,13 +21,17 @@ canvas {
 }
 
 .overlay {
-    position: relative;
+    position: absolute;
+    top: 10px;
+    /* Abstand vom oberen Rand */
+    right: 10px;
+    /* Abstand vom rechten Rand */
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.295);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.3);
     padding: 5px;
     border-radius: 10px;
 }
@@ -36,6 +41,13 @@ canvas {
     height: 40px;
     cursor: pointer;
 
+}
+
+#content {
+    position: relative;
+    /* Damit .overlay sich daran orientiert */
+    width: 100%;
+    height: 100%;
 }
 
 .starting-screen {
@@ -155,3 +167,48 @@ canvas {
 .d-none {
     display: none;
 }
+
+/*Smartphone*/
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    #startScreen img {
+        width: 100%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .layout {
+        display: none;
+    }
+}
+
+/*Smartphone*/
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    #startScreen {
+        height: 100vh;
+    }
+
+    .layout {
+        display: none;
+    }
+
+    h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    h1 {
+        display: none;
+    }
+}
+

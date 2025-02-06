@@ -90,4 +90,17 @@ class ThrowableObject extends MovableObject {
             }
         }
     }
+
+    /**
+     * Throws the object by applying vertical speed and gravity.
+     */
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
 }

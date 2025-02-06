@@ -67,7 +67,7 @@ class World {
     createBackgroundMusic() {
         this.backgroundMusic = new Audio('audio/background_music.mp3');
         this.backgroundMusic.loop = true;
-        soundManager.addSoundWithVolume(this.backgroundMusic, 0.1);
+        soundManager.addSoundWithVolume(this.backgroundMusic, 0.02);
         this.backgroundMusic.play();
     }
 
