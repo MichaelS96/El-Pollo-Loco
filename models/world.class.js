@@ -5,7 +5,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    soundManager = new SoundManager()
+    
+    soundManager = new SoundManager();
     statusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     bottleStatusBar = new BottleStatusBar();
@@ -16,17 +17,27 @@ class World {
     bottlesCollected = 0;
     lastThrowTime = 0;
 
+    backgroundMusic;
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.setWorld();
+        this.createBackgroundMusic(); 
         this.draw();
         this.run();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    createBackgroundMusic() {
+        this.backgroundMusic = new Audio('audio/background_music.mp3');
+        this.backgroundMusic.loop = true;
+        soundManager.addSoundWithVolume(this.backgroundMusic, 0.1);
+        this.backgroundMusic.play();
     }
 
     run() {
@@ -44,22 +55,28 @@ class World {
         }, 200);
     }
 
+    stopBackgroundMusic() {
+        this.backgroundMusic.pause();
+    }
+
+    startBackgroundMusic() {
+        if (!this.backgroundMusic.paused) return;
+        this.backgroundMusic.play();
+    }
+
     checkThrowObjects() {
         let currentTime = Date.now();
-    
         if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 2000)) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-    
             this.bottlesCollected--;
             let percentage = Math.max(this.bottlesCollected * 10, 0);
             this.bottleStatusBar.setPercentage(percentage);
-    
             this.lastThrowTime = currentTime;
             console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
     }
-    
+
 
     checkCollisionsWithBottle() {
         this.level.bottles.forEach((bottle, index) => {
@@ -72,7 +89,7 @@ class World {
             }
         });
     }
-    
+
 
     checkCollisionsWithCoins() {
         this.level.coins.forEach((coin, index) => {

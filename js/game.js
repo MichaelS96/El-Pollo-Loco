@@ -31,15 +31,17 @@ function init() {
     loadLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    world.startBackgroundMusic();
 }
 
 function newGame() {
-    clearAllIntervals();  // Stoppe alle laufenden Intervalle
-    removeAllEnemies();   // Entferne alle Gegner
-    loadLevel();          // Lade das Level neu
+    clearAllIntervals();  
+    removeAllEnemies();
+    loadLevel();         
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
-    resetCharacter();     // Setze den Charakter zurück
+    world.startBackgroundMusic();  
+    resetCharacter();   
 }
 
 function restartGame() {
@@ -47,6 +49,7 @@ function restartGame() {
     document.getElementById("gameWinScreen").classList.add("d-none");
     gameRunning = true;
     clearAllIntervals();
+    world.stopBackgroundMusic();  
     resetCharacter();
     removeAllEnemies();
     newGame();

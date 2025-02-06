@@ -20,6 +20,7 @@ class SoundManager {
         this.sounds.forEach(sound => {
             sound.volume = 0;
         });
+        if (this.backgroundMusic) this.backgroundMusic.pause();
         this.updateSoundButton();
         console.log("Alle Sounds wurden stummgeschaltet");
     }

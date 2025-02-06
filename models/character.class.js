@@ -6,9 +6,7 @@ class Character extends MovableObject {
     speed = 5;
     standingTime = 0;
     world;
-    walkingSound = new Audio('audio/sand_walking.mp3');
-    jumpSound = new Audio('audio/jump.mp3');
-    hurtSound = new Audio('audio/hurt.mp3');  // Hurt-Sound erstellen
+    
 
     offset = {
         top: 100,
@@ -169,7 +167,6 @@ class Character extends MovableObject {
             return;
         }
 
-        // Charakter bleibt stehen
         this.standingTime += 300;
 
         if (this.standingTime >= 15000) {
@@ -178,7 +175,6 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_STANDING);
         }
     }
-
 
     isDead() {
         return this.energy <= 0;
@@ -204,5 +200,4 @@ class Character extends MovableObject {
             gameRunning = false;
         }, 1000);
     }
-
 }
