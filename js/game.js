@@ -32,6 +32,54 @@ window.addEventListener("keyup", (e) => {
 });
 
 /**
+ * Binds touch event listeners to mobile control buttons for movement and actions.
+ * Prevents default touch behavior to ensure smooth gameplay on mobile devices.
+ * 
+ * - "mobileBtnLeft" controls left movement.
+ * - "mobileBtnRight" controls right movement.
+ * - "mobileBtnJump" makes the character jump.
+ * - "mobileBtnBottle" triggers the bottle-throwing action.
+ */
+function bindBtsPressEvents() {
+    document.getElementById('mobileBtnLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    document.getElementById('mobileBtnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('mobileBtnRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    document.getElementById('mobileBtnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('mobileBtnJump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+    document.getElementById('mobileBtnJump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+
+    document.getElementById('mobileBtnBottle').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    document.getElementById('mobileBtnBottle').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+}
+
+
+/**
  * Starts the game by hiding the start screen and initializing the world.
  * If the world is not already created, it initializes a new one.
  */
@@ -51,6 +99,7 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     world.startBackgroundMusic();
+    bindBtsPressEvents();
 }
 
 /**

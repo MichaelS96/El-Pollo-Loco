@@ -30,14 +30,12 @@ canvas {
     align-items: center;
     z-index: 10;
     padding: 5px;
-    border-radius: 10px;
 }
 
 .fullscreen-button {
     width: 30px;
     height: 30px;
     cursor: pointer;
-
 }
 
 #content {
@@ -159,6 +157,43 @@ canvas {
     padding: 5px;
 }
 
+.mobileBTN{
+    display: none;
+    position: absolute;
+    top: 75%;
+    right: 75%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 5px;
+}
+
+.mobileBTN2{
+    display: none;
+
+    position: absolute;
+    top: 75%;
+    right: 5%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 5px;
+}
+
+.mobile-btn{
+    display: none;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    background-color: rgba(51, 47, 47, 0.267);
+    border-radius: 10px;
+    padding: 5px;
+}
+
 .d-none {
     display: none;
 }
@@ -167,15 +202,19 @@ canvas {
     #content {
         width: 100vw;
     }
+
     canvas {
         width: 100%;
     }
+
     #startScreen img {
         width: 100vw;
     }
+
     h1 {
         display: none;
     }
+
     .layout {
         display: none;
     }
@@ -185,6 +224,7 @@ canvas {
     h1 {
         display: none;
     }
+
     .layout {
         display: none;
     }
@@ -194,18 +234,58 @@ canvas {
     #content {
         height: 100vh;
     }
+
     canvas {
         height: 100vh;
     }
+
     #startScreen img {
         height: 100vh;
     }
+
     .layout {
         display: none;
     }
+
     h1 {
         display: none;
     }
 }
 
+@media (hover: none) and (orientation: landscape) {
+    .mobileBTN {
+        display: block;
+        position: absolute;
+        top: 80%;
+        right: 70%;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        padding: 5px;
+    }
 
+    .mobileBTN2 {
+        display: block;
+        position: absolute;
+        top: 80%;
+        right: 5%;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        padding: 5px;
+    }
+
+    .mobile-btn {
+        display: block;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        background-color: rgba(51, 47, 47, 0.267);
+        border-radius: 10px;
+        padding: 5px;
+    }
+}
