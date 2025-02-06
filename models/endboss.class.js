@@ -1,19 +1,36 @@
+/**
+ * Represents the Endboss in the game. The Endboss has different animations, health, and behaviors depending on the state.
+ * 
+ * @class
+ * @extends MovableObject
+ */
 class Endboss extends MovableObject {
+    /**
+     * @type {number} The height of the Endboss.
+     * @type {number} The width of the Endboss.
+     * @type {number} The y-coordinate for the Endboss's position.
+     * @type {boolean} A flag indicating if the Endboss has had its first contact with the player.
+     * @type {number} The current animation frame of the Endboss.
+     * @type {number}The current energy of the Endboss.
+     * @type {Object}The offset values for collision detection of the Endboss.
+    */
     height = 400;
     width = 250;
     y = 50;
     hasFirstContact = false;
     currentAnimationFrame = 0;
     energy = 100;
-
-
     offset = {
         top: 0,
         left: 0,
         right: 0,
         bottom: 50
-    }
+    };
 
+    /**
+     * The images for different Endboss animations (alert, walk, attack, hurt, dead).
+     * @type {Array<string>}
+     */
     IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -55,6 +72,10 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
 
+    /**
+     * Creates an instance of the Endboss.
+     * Initializes the Endboss's position, animations, and sound effects.
+     */
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_ALERT);
@@ -65,10 +86,13 @@ class Endboss extends MovableObject {
         this.x = 2275;
         this.animate();
         this.damageSound = new Audio('audio/endboss_dmg.mp3');
-        soundManager.addSoundWithVolume(this.damageSound, 0.1); 
+        soundManager.addSoundWithVolume(this.damageSound, 0.1);
     }
 
-
+    /**
+     * Starts the animations and behavior of the Endboss.
+     * Loops through the animations based on the Endboss's current state.
+     */
     animate() {
         setInterval(() => {
             this.playBossAnimation();
@@ -86,10 +110,13 @@ class Endboss extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Plays the appropriate animation for the Endboss depending on its state.
+     */
     playBossAnimation() {
         if (this.isDead()) {
             this.playDeadAnimation();
-            this.showGameWinScreen(); // Hier wird der Gewinn-Bildschirm angezeigt
+            this.showGameWinScreen(); // Display the game win screen
         } else if (this.itHurt()) {
             this.playHurtAnimation();
         } else if (this.currentAnimationFrame < 15) {
@@ -104,32 +131,53 @@ class Endboss extends MovableObject {
         this.currentAnimationFrame++;
     }
 
+    /**
+     * Plays the hurt animation of the Endboss.
+     */
     playHurtAnimation() {
         this.playAnimation(this.IMAGES_HURT);
     }
 
+    /**
+     * Plays the alert animation of the Endboss.
+     */
     playAlertAnimation() {
         this.playAnimation(this.IMAGES_ALERT);
     }
 
+    /**
+     * Plays the attack animation of the Endboss.
+     */
     playAttackAnimation() {
         this.playAnimation(this.IMAGES_ATTACK);
     }
 
+    /**
+     * Plays the walk animation of the Endboss.
+     */
     playWalkAnimation() {
         this.playAnimation(this.IMAGES_WALK);
     }
 
+    /**
+     * Plays the dead animation of the Endboss.
+     */
     playDeadAnimation() {
         this.playAnimation(this.IMAGES_DEAD);
     }
 
+    /**
+     * Plays the damage sound when the Endboss is hurt.
+     */
     playDamageSound() {
         if (this.damageSound) {
             this.damageSound.play();
         }
     }
 
+    /**
+     * Checks if the Endboss has first contact with the player.
+     */
     checkFirstContact() {
         if (world.character.x > 1700 && !this.hasFirstContact) {
             console.log("First Contact with Endboss");
@@ -139,10 +187,16 @@ class Endboss extends MovableObject {
         }
     }
 
+    /**
+     * Moves the Endboss to the left.
+     */
     moveLeft() {
         this.x -= 1.5;
     }
 
+    /**
+     * Handles the Endboss being hit and reduces its energy.
+     */
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -154,6 +208,9 @@ class Endboss extends MovableObject {
         this.playDamageSound();
     }
 
+    /**
+     * Displays the game win screen once the Endboss is dead.
+     */
     showGameWinScreen() {
         setTimeout(() => {
             let gameWinScreen = document.getElementById("gameWinScreen");
@@ -162,5 +219,4 @@ class Endboss extends MovableObject {
             gameRunning = false;
         }, 1000);
     }
-
 }

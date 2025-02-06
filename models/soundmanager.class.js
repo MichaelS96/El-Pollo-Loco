@@ -1,13 +1,27 @@
+/**
+ * The `SoundManager` class is responsible for managing sounds within the game, including adding sounds, adjusting volume, 
+ * muting and unmuting, and updating the sound button UI.
+ * @class
+ */
 class SoundManager {
     constructor() {
         this.sounds = [];
         this.isMuted = false;
     }
 
+    /**
+     * Adds a sound to the sound manager.
+     * @param {Object} sound - The sound to add.
+     */
     addSound(sound) {
         this.sounds.push(sound);
     }
 
+    /**
+     * Adds a sound to the sound manager with a specified volume.
+     * @param {Object} sound - The sound to add.
+     * @param {number} volume - The volume of the sound.
+     */
     addSoundWithVolume(sound, volume) {
         sound.originalVolume = volume;
         sound.volume = volume;
@@ -15,6 +29,9 @@ class SoundManager {
         sound.load();
     }
 
+    /**
+     * Mutes all sounds.
+     */
     muteAll() {
         this.isMuted = true;
         this.sounds.forEach(sound => {
@@ -25,6 +42,9 @@ class SoundManager {
         console.log("Alle Sounds wurden stummgeschaltet");
     }
 
+    /**
+     * Unmutes all sounds.
+     */
     unmuteAll() {
         this.isMuted = false;
         this.sounds.forEach(sound => {
@@ -34,10 +54,16 @@ class SoundManager {
         console.log("Alle Sounds wurden wieder aktiviert");
     }
 
+    /**
+     * Toggles the sound state between muted and unmuted.
+     */
     toggleSound() {
         this.isMuted ? this.unmuteAll() : this.muteAll();
     }
 
+    /**
+     * Updates the sound button icon based on the mute state.
+     */
     updateSoundButton() {
         const soundButton = document.getElementById("soundToggle");
         if (this.isMuted) {
