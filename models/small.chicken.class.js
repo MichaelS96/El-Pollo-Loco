@@ -4,7 +4,7 @@ class SmallChicken extends MovableObject {
     width = 65;
     energy = 1;
     isDead = false;
-    
+
     offset = {
         top: -30,
         bottom: 0,
@@ -29,7 +29,7 @@ class SmallChicken extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.75;
         this.animate();
         this.deathSound = new Audio('audio/chicken_death.mp3');
-        this.deathSound.volume = 0.2;
+        soundManager.addSoundWithVolume(this.deathSound, 0.2);
     }
 
     animate() {

@@ -90,10 +90,17 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
-        this.jumpSound.volume = 0.2;
-        this.hurtSound.volume = 0.1;
-        this.energy = 100;  // Initialisiere die Lebensenergie beim Erstellen des Charakters
+
+        this.jumpSound = new Audio('audio/jump.mp3');
+        soundManager.addSoundWithVolume(this.jumpSound, 0.2);
+
+        this.hurtSound = new Audio('audio/hurt.mp3');
+        soundManager.addSoundWithVolume(this.hurtSound, 0.05);
+
+        this.walkingSound = new Audio('audio/sand_walking.mp3');
+        soundManager.addSoundWithVolume(this.walkingSound, 0.05);
     }
+
 
     animate() {
         setInterval(() => {
@@ -113,7 +120,7 @@ class Character extends MovableObject {
         if (!gameRunning) return;
 
         this.walkingSound.pause();
-        this.walkingSound.volume = 0.05;
+        
 
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
@@ -142,36 +149,36 @@ class Character extends MovableObject {
             this.showGameOverScreen();
             return;
         }
-    
+
         if (this.itHurt()) {
             this.playAnimation(this.IMAGES_HURT);
             this.standingTime = 0;
             this.hurtSound.play();
             return;
         }
-    
+
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
             this.standingTime = 0;
             return;
         }
-    
+
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);
             this.standingTime = 0;
             return;
         }
-    
+
         // Charakter bleibt stehen
-        this.standingTime += 300; 
-    
+        this.standingTime += 300;
+
         if (this.standingTime >= 15000) {
             this.playAnimation(this.IMAGES_SLEEPING);
         } else {
             this.playAnimation(this.IMAGES_STANDING);
         }
     }
-    
+
 
     isDead() {
         return this.energy <= 0;

@@ -5,8 +5,8 @@ class Endboss extends MovableObject {
     hasFirstContact = false;
     currentAnimationFrame = 0;
     energy = 100;
-    damageSound = new Audio('audio/endboss_dmg.mp3');
-    
+
+
     offset = {
         top: 0,
         left: 0,
@@ -64,8 +64,10 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.x = 2275;
         this.animate();
-        this.damageSound.volume = 0.1;
+        this.damageSound = new Audio('audio/endboss_dmg.mp3');
+        soundManager.addSoundWithVolume(this.damageSound, 0.1); 
     }
+
 
     animate() {
         setInterval(() => {

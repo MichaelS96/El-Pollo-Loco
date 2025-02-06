@@ -28,8 +28,9 @@ class ThrowableObject extends MovableObject {
         this.throw();
         this.animate();
         this.splashSound = new Audio('audio/broken_bottle.mp3');
-        this.splashSound.volume = 0.2;
+        soundManager.addSoundWithVolume(this.splashSound, 0.2); 
     }
+    
 
     throw() {
         this.speedY = 30;

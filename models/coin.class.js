@@ -21,8 +21,9 @@ class Coin extends MovableObject {
         this.y = y;
         this.animate();
         this.coinSound = new Audio('audio/coin_collected.mp3');
-        this.coinSound.volume = 0.2;
+        soundManager.addSoundWithVolume(this.coinSound, 0.2); 
     }
+    
 
     animate() {
         setInterval(() => {

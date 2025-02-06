@@ -13,20 +13,20 @@ class Bottle extends MovableObject {
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
     ];
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/2_salsa_bottle_on_ground.png');
         this.loadImages(this.IMAGES);
-        this.x = 400 + Math.random() * 1500;
-        this.y = 350;
+        this.x = x;
+        this.y = y;
         this.animate();
-        this.bottleSound = new Audio('audio/bottle_collected.mp3')
-        this.bottleSound.volume = 0.1;
+        this.bottleSound = new Audio('audio/bottle_collected.mp3');
+        soundManager.addSoundWithVolume(this.bottleSound, 0.05); 
     }
+    
 
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);
         }, 550);
     }
-
 }

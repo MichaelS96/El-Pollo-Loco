@@ -31,8 +31,9 @@ class Chicken extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.75;
         this.animate();
         this.deathSound = new Audio('audio/chicken_death.mp3');
-        this.deathSound.volume = 0.2;
+        soundManager.addSoundWithVolume(this.deathSound, 0.2); 
     }
+    
 
     animate() {
         setInterval(() => {

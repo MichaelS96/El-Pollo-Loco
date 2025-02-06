@@ -5,7 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-
+    soundManager = new SoundManager()
     statusBar = new HealthStatusBar();
     coinStatusBar = new CoinStatusBar();
     bottleStatusBar = new BottleStatusBar();
@@ -46,31 +46,33 @@ class World {
 
     checkThrowObjects() {
         let currentTime = Date.now();
-
+    
         if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 2000)) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-
+    
             this.bottlesCollected--;
-            let percentage = Math.max(this.bottlesCollected * 20, 0);
+            let percentage = Math.max(this.bottlesCollected * 10, 0);
             this.bottleStatusBar.setPercentage(percentage);
-
+    
             this.lastThrowTime = currentTime;
             console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
     }
+    
 
     checkCollisionsWithBottle() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
                 this.level.bottles.splice(index, 1);
-                this.bottlesCollected = Math.min(this.bottlesCollected + 1, 5);
-                this.bottleStatusBar.setPercentage(this.bottlesCollected * 20);
+                this.bottlesCollected = Math.min(this.bottlesCollected + 1, 10);
+                this.bottleStatusBar.setPercentage(this.bottlesCollected * 10);
                 console.log('Bottle collected!', this.bottlesCollected);
                 bottle.bottleSound.play();
             }
         });
     }
+    
 
     checkCollisionsWithCoins() {
         this.level.coins.forEach((coin, index) => {

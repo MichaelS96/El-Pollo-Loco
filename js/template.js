@@ -4,11 +4,10 @@ function loadTemplate() {
         <h1><img src="img/11_logo/header.png" alt="El-Pollo-Loco-Logo"></h1>
         
         <div class="overlay">
-            <img class="fullscreen-button" id="mute" src="./img/icons/mute.png" alt="Mute Button">
-            <img class="fullscreen-button" id="sound" src="./img/icons/sound.png" alt="Sound Button">
-            <img class="fullscreen-button" id="FULLSCREEN" onclick="openFullscreen(document.getElementById('canvas'))" src="./img/icons/fullscreen.png" alt="Fullscreen Button">
+    <img class="fullscreen-button" id="soundToggle" onclick="toggleSound()" src="./img/icons/sound.png" alt="Sound Button">
+    <img class="fullscreen-button" id="FULLSCREEN" onclick="openFullscreen(document.getElementById('canvas'))" src="./img/icons/fullscreen.png" alt="Fullscreen Button">
+</div>
 
-        </div>
         
         <div>
             <div id="content" class="content-container">

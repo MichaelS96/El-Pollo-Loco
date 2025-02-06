@@ -3,11 +3,16 @@ let level1;
 function loadLevel() {
     level1 = new Level(
         [
-            new Bottle(),
-            new Bottle(),
-            new Bottle(),
-            new Bottle(),
-            new Bottle(),
+            new Bottle(250, 350),
+            new Bottle(380, 350),
+            new Bottle(580, 350),
+            new Bottle(880, 350),
+            new Bottle(1080, 350),
+            new Bottle(1380, 350),
+            new Bottle(1480, 350),
+            new Bottle(1780, 350),
+            new Bottle(1200, 350),
+            new Bottle(2000, 350),
         ],
         [
             new SmallChicken(),
