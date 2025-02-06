@@ -102,7 +102,6 @@ class Endboss extends MovableObject {
                 this.moveLeft();
             }
         }, 1000 / 120);
-
         setInterval(() => {
             if (this.itHurt()) {
                 this.playDamageSound();
