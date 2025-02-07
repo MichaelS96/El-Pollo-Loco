@@ -256,7 +256,7 @@ class Character extends MovableObject {
      * Makes the character jump by setting an initial speed for the Y-axis.
      */
     jump() {
-        this.speedY = 30;
+        this.speedY = 33;
     }
 
     /**
