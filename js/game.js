@@ -179,7 +179,7 @@ function exitFullscreen() {
 }
 
 /**
- * Toggles fullscreen mode by calling the `enterFullscreen` function for the given element.
+ * Toggles fullscreen mode by calling the enterFullscreen function for the given element.
  * 
  * @param {HTMLElement} element - The DOM element to toggle fullscreen.
  */
@@ -212,11 +212,10 @@ function goToHomeScreen() {
     if (world) {
         world.stopBackgroundMusic();
     }
-    removeAllEnemies();
+    
     document.getElementById("startScreen").classList.remove("d-none");
     document.getElementById("content").classList.remove("d-none"); 
     world = null; 
     gameRunning = false;
     location.reload();  
 }
-
