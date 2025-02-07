@@ -117,7 +117,6 @@ class World {
             let percentage = Math.max(this.bottlesCollected * 10, 0);
             this.bottleStatusBar.setPercentage(percentage);
             this.lastThrowTime = currentTime;
-            console.log(`Bottle thrown! Remaining: ${this.bottlesCollected}, Status: ${percentage}%`);
         }
     }
 
@@ -130,7 +129,6 @@ class World {
                 this.level.bottles.splice(index, 1);
                 this.bottlesCollected = Math.min(this.bottlesCollected + 1, 10);
                 this.bottleStatusBar.setPercentage(this.bottlesCollected * 10);
-                console.log('Bottle collected!', this.bottlesCollected);
                 bottle.bottleSound.play();
             }
         });
@@ -145,7 +143,6 @@ class World {
                 this.level.coins.splice(index, 1);
                 this.coinsCollected = Math.min(this.coinsCollected + 1, 10);
                 this.coinStatusBar.setPercentage(this.coinsCollected * 10);
-                console.log('Coin collected!', this.coinsCollected);
                 coin.coinSound.play();
             }
         });
@@ -158,11 +155,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 if (this.character.y + this.character.height - 80 < enemy.y) {
-                    console.log('Character jumped on enemy!');
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
-                    console.log('Collision with enemy! Character energy:', this.character.energy);
                 }
             }
         });
@@ -176,7 +171,6 @@ class World {
             if (this.character.isColliding(endboss)) {
                 this.character.endBossHit();
                 this.statusBar.setPercentage(this.character.energy);
-                console.log('Collision with EndBoss! Character energy:', this.character.energy);
             }
         });
     }
@@ -189,7 +183,6 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                 this.character.hitEnemy();
                 enemy.die();
-                console.log('Enemy killed by jumping on it!');
             }
         });
     }
@@ -207,8 +200,6 @@ class World {
                     setTimeout(() => {
                         this.throwableObjects.splice(bottleIndex, 1);
                     }, 200);
-
-                    console.log('Bottle hits enemy!', enemy);
                 }
             });
         });

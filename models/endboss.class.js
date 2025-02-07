@@ -179,7 +179,6 @@ class Endboss extends MovableObject {
      */
     checkFirstContact() {
         if (world.character.x > 1700 && !this.hasFirstContact) {
-            console.log("First Contact with Endboss");
             this.currentAnimationFrame = 0;
             this.hasFirstContact = true;
             world.bossStatusBar.isVisible = true;

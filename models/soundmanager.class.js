@@ -39,7 +39,6 @@ class SoundManager {
         });
         if (this.backgroundMusic) this.backgroundMusic.pause();
         this.updateSoundButton();
-        console.log("Alle Sounds wurden stummgeschaltet");
     }
 
     /**
@@ -51,7 +50,6 @@ class SoundManager {
             sound.volume = sound.originalVolume;
         });
         this.updateSoundButton();
-        console.log("Alle Sounds wurden wieder aktiviert");
     }
 
     /**

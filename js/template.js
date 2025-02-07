@@ -69,34 +69,34 @@ function loadTemplate() {
             </div>
             
             <div class="mobileBTN">
-                <img class="mobile-btn" id="mobileBtnLeft" src="./img/icons/moveLeft.png" alt="">
-                <img class="mobile-btn" id="mobileBtnRight" src="./img/icons/moveRight.png" alt="">
+                <img class="mobile-btn" id="mobileBtnLeft" src="./img/icons/moveLeft.png" alt="move-left btn">
+                <img class="mobile-btn" id="mobileBtnRight" src="./img/icons/moveRight.png" alt="move-right btn">
             </div>
             
             <div class="mobileBTN2">    
-                <img class="mobile-btn" id="mobileBtnJump" src="./img/icons/jump.png" alt="">
-                <img class="mobile-btn" id="mobileBtnBottle" src="./img/icons/bottle.png" alt="">
+                <img class="mobile-btn" id="mobileBtnJump" src="./img/icons/jump.png" alt="jump btn">
+                <img class="mobile-btn" id="mobileBtnBottle" src="./img/icons/bottle.png" alt="throwBottle btn">
             </div>
             
             <div class="layout">
                 <div class="left">
                     <div>
-                        <img src="/img/icons/moveLeft.png" alt="move-left btn">
+                        <img src="./img/icons/moveLeft.png" alt="move-left btn">
                         <b>Move Left</b>
                     </div>
                     <div>
-                        <img src="/img/icons/moveRight.png" alt="move-right btn">
+                        <img src="./img/icons/moveRight.png" alt="move-right btn">
                         <b>Move Right</b>
                     </div>
                 </div>
                 
                 <div class="right">
                     <div>
-                        <img src="/img/icons/jump.png" alt="jump btn">
+                        <img src="./img/icons/jump.png" alt="jump btn">
                         <b>Jump</b>
                     </div>
                     <div>
-                        <img src="/img/icons/space.png" alt="space btn">
+                        <img src="./img/icons/space.png" alt="space btn">
                         <b>Throw bottle</b>
                     </div>
                 </div>
