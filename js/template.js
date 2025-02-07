@@ -57,7 +57,11 @@ function loadTemplate() {
                     </strong>
                 </div>
             </div>
-            
+
+            <div id="rotateDevice" class="rotate-device">
+                <img src="img/10_background/rotate_your_device.png" alt="Rotate Device">
+            </div>
+
             <div class="overlay">
                 <img class="fullscreen-button" id="impressum" onclick="openImpressum()" src="./img/icons/impressum.png" alt="impressum icon">
                 <img class="fullscreen-button" id="soundToggle" onclick="toggleSound()" src="./img/icons/sound.png" alt="Sound Button">
@@ -77,22 +81,22 @@ function loadTemplate() {
             <div class="layout">
                 <div class="left">
                     <div>
-                        <img src="/img/icons/moveLeft1.png" alt="move-left btn">
+                        <img src="/img/icons/moveLeft.png" alt="move-left btn">
                         <b>Move Left</b>
                     </div>
                     <div>
-                        <img src="/img/icons/moveRight1.png" alt="move-right btn">
+                        <img src="/img/icons/moveRight.png" alt="move-right btn">
                         <b>Move Right</b>
                     </div>
                 </div>
                 
                 <div class="right">
                     <div>
-                        <img src="/img/icons/jump1.png" alt="jump btn">
+                        <img src="/img/icons/jump.png" alt="jump btn">
                         <b>Jump</b>
                     </div>
                     <div>
-                        <img src="/img/icons/space1.png" alt="space btn">
+                        <img src="/img/icons/space.png" alt="space btn">
                         <b>Throw bottle</b>
                     </div>
                 </div>

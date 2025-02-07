@@ -52,17 +52,13 @@ class Chicken extends MovableObject {
      * Creates an instance of the Chicken class.
      * Initializes the chicken's position, speed, animations, and death sound.
      */
-    constructor() {
+    constructor(x, y) {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-
-        // Random initial position for the chicken
-        this.x = 400 + Math.random() * 1500;
-
-        // Random speed for the chicken
+        this.x = x;
+        this.y = y;
         this.speed = 0.15 + Math.random() * 0.75;
-
         this.animate();
 
         /** 

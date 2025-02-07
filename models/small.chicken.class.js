@@ -43,15 +43,16 @@ class SmallChicken extends MovableObject {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
-/**
- * Creates an instance of the SmallChicken class. The constructor initializes the small chicken's properties,
- * loads the walking and dead images, sets its initial position, speed, and initializes the death sound.
- */
-    constructor() {
+    /**
+     * Creates an instance of the SmallChicken class. The constructor initializes the small chicken's properties,
+     * loads the walking and dead images, sets its initial position, speed, and initializes the death sound.
+     */
+    constructor(x, y) {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
-        this.x = 400 + Math.random() * 1500;
+        this.x = x;
+        this.y = y;
         this.speed = 0.15 + Math.random() * 0.75;
         this.animate();
         this.deathSound = new Audio('audio/chicken_death.mp3');
