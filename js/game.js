@@ -1,8 +1,5 @@
 /**
- * @type {HTMLCanvasElement}Global variable representing the canvas element in the DOM.
- * @type {World}Global variable representing the world object that contains the game world and logic.
- * @type {Keyboard}Global variable representing the keyboard input state.
- * @type {boolean}Boolean variable indicating whether the game is currently running.
+ * @type {HTMLCanvasElement}
  */
 let canvas;
 let world;
@@ -34,11 +31,6 @@ window.addEventListener("keyup", (e) => {
 /**
  * Binds touch event listeners to mobile control buttons for movement and actions.
  * Prevents default touch behavior to ensure smooth gameplay on mobile devices.
- * 
- * - "mobileBtnLeft" controls left movement.
- * - "mobileBtnRight" controls right movement.
- * - "mobileBtnJump" makes the character jump.
- * - "mobileBtnBottle" triggers the bottle-throwing action.
  */
 function bindBtsPressEvents() {
     document.getElementById('mobileBtnLeft').addEventListener('touchstart', (e) => {
@@ -211,3 +203,20 @@ function closeImpressum() {
     let dialog = document.getElementById('impressumDialog');
     dialog.classList.add('d-none');
 }
+
+/**
+ * Navigates to the home screen, resetting the game by reloading the page.
+ */
+function goToHomeScreen() {
+    clearAllIntervals();
+    if (world) {
+        world.stopBackgroundMusic();
+    }
+    removeAllEnemies();
+    document.getElementById("startScreen").classList.remove("d-none");
+    document.getElementById("content").classList.remove("d-none"); 
+    world = null; 
+    gameRunning = false;
+    location.reload();  
+}
+

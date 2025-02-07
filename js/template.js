@@ -38,7 +38,8 @@ function loadTemplate() {
                         EU-Streitschlichtung<br>
                         Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit, 
                         die Sie unter https://ec.europa.eu/consumers/odr/ finden. 
-                        Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                        Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren vor einer
+                        Verbraucherschlichtungsstelle teilzunehmen.
                     </strong>
                     <br>
                     <strong>
@@ -66,6 +67,7 @@ function loadTemplate() {
                 <img class="fullscreen-button" id="impressum" onclick="openImpressum()" src="./img/icons/impressum.png" alt="impressum icon">
                 <img class="fullscreen-button" id="soundToggle" onclick="toggleSound()" src="./img/icons/sound.png" alt="Sound Button">
                 <img class="fullscreen-button" id="FULLSCREEN" onclick="openFullscreen(document.getElementById('canvas'))" src="./img/icons/fullscreen.png" alt="Fullscreen Button">
+                <img class="fullscreen-button" id="homeScreen" onclick="goToHomeScreen()" src="./img/icons/homeScreen.png" alt="HomeScreenbtn">
             </div>
             
             <div class="mobileBTN">
