@@ -78,7 +78,6 @@ function bindBtsPressEvents() {
     });
 }
 
-
 /**
  * Starts the game by hiding the start screen and initializing the world.
  * If the world is not already created, it initializes a new one.
@@ -112,7 +111,6 @@ function newGame() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     world.startBackgroundMusic();
-    resetCharacter();
 }
 
 /**
@@ -125,22 +123,9 @@ function restartGame() {
     gameRunning = true;
     clearAllIntervals();
     world.stopBackgroundMusic();
-    resetCharacter();
+
     removeAllEnemies();
     newGame();
-}
-
-/**
- * Resets the character's properties, such as energy, position, and standing time, 
- * and sets the game state to running.
- */
-function resetCharacter() {
-    world.character.energy = 100;
-    world.character.x = 0;
-    world.character.y = 140;
-    world.character.standingTime = 0;
-    gameRunning = true;
-    console.log("Character Health nach Neustart: ", world.character.energy);
 }
 
 /**
@@ -209,4 +194,20 @@ function exitFullscreen() {
 function openFullscreen(element) {
     let fullscreen = document.getElementById('fullscreen');
     enterFullscreen(element);
+}
+
+/**
+ * Öffnet den Impressum-Dialog, indem die CSS-Klasse "d-none" entfernt wird.
+ */
+function openImpressum() {
+    let dialog = document.getElementById('impressumDialog');
+    dialog.classList.remove('d-none');
+}
+
+/**
+ * Schließt den Impressum-Dialog, indem die CSS-Klasse "d-none" hinzugefügt wird.
+ */
+function closeImpressum() {
+    let dialog = document.getElementById('impressumDialog');
+    dialog.classList.add('d-none');
 }
