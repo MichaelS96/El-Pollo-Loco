@@ -19,13 +19,6 @@ class Chicken extends MovableObject {
     width = 90;
     energy = 1;
     isDead = false;
-    offset = {
-        top: -30,
-        bottom: 0,
-        right: -20,
-        left: -20,
-    };
-
 
     /** 
      * Array of image paths representing the chicken walking.

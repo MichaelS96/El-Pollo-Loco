@@ -16,8 +16,8 @@ function loadLevel() {
         ],
         [
             new SmallChicken(2200, 335),
-            new SmallChicken(2300, 335),
-            new SmallChicken(2350, 335),
+            new SmallChicken(1300, 335),
+            new SmallChicken(1550, 335),
             new Chicken(550, 320),
             new Chicken(800, 325),
             new Chicken(1200, 325),
