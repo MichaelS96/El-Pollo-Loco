@@ -48,7 +48,7 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.splashSound = new Audio('audio/broken_bottle.mp3');
         soundManager.addSoundWithVolume(this.splashSound, 0.2);
-        
+
         this.throw();
     }
 
@@ -59,14 +59,11 @@ class ThrowableObject extends MovableObject {
         if (!this.throwStarted) {
             this.throwStarted = true;
             this.applyGravity();
-
-            this.moveInterval = setInterval(() => {
-                this.x += 10;
-            }, 25);
-
-            this.animationInterval = setInterval(() => {
+            this.mainInterval = setInterval(() => {
+                // Update the object's position
+                this.x += 20;
                 this.animate();
-            }, 75);
+            }, 60); 
         }
     }
 
@@ -77,13 +74,13 @@ class ThrowableObject extends MovableObject {
         if (this.isAboveGround() && !this.isColliding) {
             this.playAnimation(this.IMAGES_ROTATION);
         } else {
-            clearInterval(this.animationInterval);
+            clearInterval(this.mainInterval); 
             this.playAnimation(this.IMAGES_SPLASH);
             if (!this.splashTimerStarted) {
                 this.splashTimerStarted = true;
                 this.splashSound.play();
                 setTimeout(() => {
-                    this.y = 1000;
+                    this.y = 1000; 
                 }, 100);
             }
         }

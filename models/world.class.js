@@ -109,16 +109,21 @@ class World {
      * Checks if the character interacts with a throwable object (bottle) and throws a bottle if conditions are met.
      */
     checkThrowObjects() {
+        const THROW_COOLDOWN = 500;
+        const THROW_OFFSET = 75;
+        const THROW_PERCENTAGE_MULTIPLIER = 10;
         let currentTime = Date.now();
-        if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= 500)) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+
+        if (this.keyboard.SPACE && this.bottlesCollected > 0 && (currentTime - this.lastThrowTime >= THROW_COOLDOWN)) {
+            let bottle = new ThrowableObject(this.character.x + THROW_OFFSET, this.character.y + THROW_OFFSET);
             this.throwableObjects.push(bottle);
             this.bottlesCollected--;
-            let percentage = Math.max(this.bottlesCollected * 10, 0);
+            let percentage = Math.max(this.bottlesCollected * THROW_PERCENTAGE_MULTIPLIER, 0);
             this.bottleStatusBar.setPercentage(percentage);
             this.lastThrowTime = currentTime;
         }
     }
+
 
     /**
      * Checks if the character collides with a bottle and collects it if a collision occurs.
