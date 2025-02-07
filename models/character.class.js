@@ -176,33 +176,23 @@ class Character extends MovableObject {
      */
     characterMoving() {
         if (!gameRunning) return;
-
         this.walkingSound.pause();
-
-        // Move right
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.moveRight();
             this.otherDirection = false;
-            this.walkingSound.play();
-            this.standingTime = 0;
-        }
-
-        // Move left
-        if (this.world.keyboard.LEFT && this.x > 0) {
+        } else if (this.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
+        }
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.walkingSound.play();
             this.standingTime = 0;
         }
-
-        // Jump
         if (this.world.keyboard.UP && !this.isAboveGround()) {
             this.jump();
             this.standingTime = 0;
             this.jumpSound.play();
         }
-
-        // Adjust the camera position based on character's position
         this.world.camera_x = -this.x + 120;
     }
 
@@ -215,26 +205,28 @@ class Character extends MovableObject {
             this.showGameOverScreen();
             return;
         }
-
         if (this.itHurt()) {
             this.playAnimation(this.IMAGES_HURT);
-            this.standingTime = 0;
             this.hurtSound.play();
             return;
         }
-
         if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
             this.standingTime = 0;
             return;
         }
-
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);
             this.standingTime = 0;
             return;
         }
+        this.handleIdleAnimation();
+    }
 
+    /**
+ * Handles the character's idle animation when standing still for a long time.
+ */
+    handleIdleAnimation() {
         this.standingTime += 300;
 
         if (this.standingTime >= 15000) {
