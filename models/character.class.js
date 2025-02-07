@@ -128,8 +128,9 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
-        this.applyGravity();
+        this.applyGravity();       
         this.animate();
+        this.animate2();
 
         /** 
          * The sound played when the character jumps.
@@ -163,7 +164,9 @@ class Character extends MovableObject {
                 this.characterMoving();
             }
         }, 1000 / 60);
-
+    }
+    
+    animate2(){
         setInterval(() => {
             if (gameRunning) {
                 this.characterAnimation();
