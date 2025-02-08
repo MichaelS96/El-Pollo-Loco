@@ -60,7 +60,6 @@ class ThrowableObject extends MovableObject {
             this.throwStarted = true;
             this.applyGravity();
             this.mainInterval = setInterval(() => {
-                // Update the object's position
                 this.x += 20;
                 this.animate();
             }, 60); 

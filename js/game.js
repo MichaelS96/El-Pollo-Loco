@@ -209,13 +209,21 @@ function closeImpressum() {
  */
 function goToHomeScreen() {
     clearAllIntervals();
+
     if (world) {
         world.stopBackgroundMusic();
     }
-    
-    document.getElementById("startScreen").classList.remove("d-none");
-    document.getElementById("content").classList.remove("d-none"); 
+
+    const game = document.getElementById('game');
+    game.innerHTML = ''; 
+    loadTemplate(); 
+
     world = null; 
     gameRunning = false;
-    location.reload();  
+
+    if (world) {
+        removeAllEnemies();
+    }
+
+    document.getElementById('startScreen').classList.remove('d-none'); // Startscreen anzeigen
 }
