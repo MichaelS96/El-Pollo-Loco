@@ -76,11 +76,20 @@ function bindBtsPressEvents() {
  */
 function startGame() {
     document.getElementById("startScreen").classList.add("d-none");
-    if (!world) {
+    canvas = document.getElementById('canvas');
+
+    if (!canvas) {
+        console.error("Canvas not found!");
+        return;
+    }
+    if (!world || !gameRunning) {
+        gameRunning = true;
         init();
     }
+    
     hideLoadScreen();
 }
+
 
 /**
  * Initializes the game world by loading the level and setting up the canvas.
@@ -214,16 +223,13 @@ function goToHomeScreen() {
         world.stopBackgroundMusic();
     }
 
-    const game = document.getElementById('game');
-    game.innerHTML = ''; 
-    loadTemplate(); 
-
-    world = null; 
+    world = null;
     gameRunning = false;
 
-    if (world) {
-        removeAllEnemies();
-    }
+    document.getElementById('game').innerHTML = ''; 
+    loadTemplate();
 
-    document.getElementById('startScreen').classList.remove('d-none'); // Startscreen anzeigen
+    setTimeout(() => {
+        document.getElementById('startScreen').classList.remove('d-none');
+    }, 100);
 }
