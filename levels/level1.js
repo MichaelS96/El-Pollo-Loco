@@ -1,6 +1,4 @@
 function loadLevel() {
-    console.log("loadLevel() wurde aufgerufen!");
-
     level1 = new Level(
         [
             new Bottle(250, 350),
@@ -70,6 +68,4 @@ function loadLevel() {
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 3),
         ]
     );
-
-    console.log("Level geladen:", level1);
 }

@@ -37,6 +37,8 @@ class World {
     bottlesCollected = 0;
     lastThrowTime = 0;
     backgroundMusic;
+    lastHitTime = 0;
+    hitCooldown = 1000;
 
     /**
      * Creates a new instance of the World class.
@@ -51,7 +53,7 @@ class World {
         this.setWorld();
         this.createBackgroundMusic();
         this.draw();
-        this.run();
+        this.checkCollisions();
     }
 
     /**
@@ -75,19 +77,17 @@ class World {
      * Starts continuous checking of collisions and other game mechanics.
      * Runs every 200ms.
      */
-    run() {
-        setInterval(() => {
-            if (!gameRunning) return;
+    checkCollisions() {
+        if (!gameRunning) return;
 
-            this.checkCollisionsWithEnemies();
-            this.checkCollisionsWithEndBoss();
-            this.checkCollisionsWithCoins();
-            this.checkCollisionsWithBottle();
-            this.checkThrowObjects();
-            this.checkCollisionJumpOnEnemy();
-            this.checkCollisionBottleFinalboss();
-            this.checkCollisionWithBottleAndEnemies();
-        }, 200);
+        this.checkCollisionsWithEnemies();
+        this.checkCollisionsWithEndBoss();
+        this.checkCollisionsWithCoins();
+        this.checkCollisionsWithBottle();
+        this.checkThrowObjects();
+        this.checkCollisionJumpOnEnemy();
+        this.checkCollisionBottleFinalboss();
+        this.checkCollisionWithBottleAndEnemies();
     }
 
     /**
@@ -157,12 +157,14 @@ class World {
      * Checks if the character collides with an enemy and reduces the character's energy if a collision occurs.
      */
     checkCollisionsWithEnemies() {
+        let currentTime = Date.now();
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && currentTime - this.lastHitTime > this.hitCooldown) {
                 if (this.character.y + this.character.height - 90 < enemy.y) {
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
+                    this.lastHitTime = currentTime;
                 }
             }
         });
@@ -216,14 +218,14 @@ class World {
     checkCollisionBottleFinalboss() {
         this.throwableObjects.forEach((bottle, index) => {
             this.level.endboss.forEach((endboss) => {
-                if (endboss.isColliding(bottle)) {
-                    endboss.hit();
-                    bottle.isColliding = true;
-
+                if (endboss.isColliding(bottle) && !bottle.hasHit) {  
+                    endboss.hit(20); // Hier auch nur 20 Schaden
+                    bottle.hasHit = true;  
+    
                     setTimeout(() => {
                         this.throwableObjects.splice(index, 1);
                     }, 200);
-
+    
                     if (!this.bossStatusBar.isVisible) {
                         this.bossStatusBar.isVisible = true;
                     }
@@ -237,6 +239,7 @@ class World {
      */
     draw() {
         if (!gameRunning) return;
+
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
@@ -254,8 +257,13 @@ class World {
         this.addObjectsToMap([...this.level.bottles, ...this.throwableObjects]);
         this.ctx.translate(-this.camera_x, 0);
 
+        // **Hier fügen wir die Kollisionserkennung ein!**
+        this.checkCollisions();
+
+        // **requestAnimationFrame für den nächsten Frame**
         requestAnimationFrame(() => this.draw());
     }
+
 
     /**
      * Adds a list of objects to the game world canvas.
