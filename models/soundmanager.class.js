@@ -12,13 +12,11 @@ class SoundManager {
         this.sounds = [];
         this.isMuted = false;
 
-        // Load mute status from localStorage if available
         const savedMuteStatus = localStorage.getItem('soundMuted');
         if (savedMuteStatus === 'true') {
             this.isMuted = true;
         }
 
-        // Update all sounds based on the mute status
         this.updateSoundsMuteStatus();
         this.updateSoundButton();
     }
@@ -78,10 +76,9 @@ class SoundManager {
         this.isMuted = true;
         this.sounds.forEach(sound => {
             sound.volume = 0;
+            sound.pause(); 
         });
         if (this.backgroundMusic) this.backgroundMusic.pause();
-
-        // Save mute state to localStorage
         localStorage.setItem('soundMuted', 'true');
 
         this.updateSoundButton();
@@ -94,9 +91,10 @@ class SoundManager {
         this.isMuted = false;
         this.sounds.forEach(sound => {
             sound.volume = sound.originalVolume || sound.volume;
+            if (sound.paused) {
+                sound.play(); 
+            }
         });
-
-        // Save mute state to localStorage
         localStorage.setItem('soundMuted', 'false');
 
         this.updateSoundButton();
@@ -129,9 +127,6 @@ class SoundManager {
         }
     }
 }
-
-// Initialisiere den Soundmanager
 const soundManager = new SoundManager();
 
-// Event Listener für das Umschalten des Sounds
 window.toggleSound = () => soundManager.toggleSound();
