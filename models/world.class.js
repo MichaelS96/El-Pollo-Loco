@@ -35,6 +35,7 @@ class World {
     bossStatusBar = new BossStatusBar();
     throwableObjects = [];
     bottlesCollected = 0;
+    coinsCollected = 0;
     lastThrowTime = 0;
     backgroundMusic;
     lastHitTime = 0;
@@ -145,6 +146,7 @@ class World {
     checkCollisionsWithCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
+                console.log("Coin collected! Current coinsCollected:", this.coinsCollected); // Debugging-Ausgabe
                 this.level.coins.splice(index, 1);
                 this.coinsCollected = Math.min(this.coinsCollected + 1, 10);
                 this.coinStatusBar.setPercentage(this.coinsCollected * 10);
@@ -152,6 +154,7 @@ class World {
             }
         });
     }
+    
 
     /**
      * Checks if the character collides with an enemy and reduces the character's energy if a collision occurs.
@@ -256,11 +259,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap([...this.level.bottles, ...this.throwableObjects]);
         this.ctx.translate(-this.camera_x, 0);
-
-        // **Hier fügen wir die Kollisionserkennung ein!**
         this.checkCollisions();
-
-        // **requestAnimationFrame für den nächsten Frame**
         requestAnimationFrame(() => this.draw());
     }
 
