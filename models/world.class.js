@@ -159,7 +159,7 @@ class World {
     checkCollisionsWithEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                if (this.character.y + this.character.height - 80 < enemy.y) {
+                if (this.character.y + this.character.height - 90 < enemy.y) {
                 } else {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);

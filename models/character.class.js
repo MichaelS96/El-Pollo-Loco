@@ -128,7 +128,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
-        this.applyGravity();       
+        this.applyGravity();
         this.animate();
         this.animate2();
 
@@ -165,8 +165,8 @@ class Character extends MovableObject {
             }
         }, 1000 / 60);
     }
-    
-    animate2(){
+
+    animate2() {
         setInterval(() => {
             if (gameRunning) {
                 this.characterAnimation();
@@ -200,35 +200,96 @@ class Character extends MovableObject {
     }
 
     /**
-     * Handles the character's animation based on current state (dead, hurt, jumping, walking, standing).
-     */
-    characterAnimation() {
-        if (this.isDead()) {
-            this.playAnimation(this.IMAGES_DEAD);
-            this.showGameOverScreen();
-            return;
-        }
-        if (this.itHurt()) {
-            this.playAnimation(this.IMAGES_HURT);
-            this.hurtSound.play();
-            return;
-        }
-        if (this.isAboveGround()) {
-            this.playAnimation(this.IMAGES_JUMPING);
-            this.standingTime = 0;
-            return;
+    * Moves the character based on keyboard input and the current game state.
+    */
+    characterMoving() {
+        if (!gameRunning) return;
+        this.walkingSound.pause();
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+        } else if (this.world.keyboard.LEFT && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
         }
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-            this.playAnimation(this.IMAGES_WALKING);
+            this.walkingSound.play();
             this.standingTime = 0;
-            return;
         }
+        if (this.world.keyboard.UP && !this.isAboveGround()) {
+            this.jump();
+            this.standingTime = 0;
+            this.jumpSound.play();
+        }
+        this.world.camera_x = -this.x + 120;
+    }
+
+    /**
+     * Handles the character's animation based on the current state (dead, hurt, jumping, walking, standing).
+     */
+    characterAnimation() {
+        if (this.isDeadAnimation()) return;
+        if (this.isHurtAnimation()) return;
+        if (this.isJumpingAnimation()) return;
+        if (this.isWalkingAnimation()) return;
         this.handleIdleAnimation();
     }
 
     /**
- * Handles the character's idle animation when standing still for a long time.
- */
+     * Plays the death animation and triggers the game over screen.
+     * @returns {boolean} - Returns true if the character is dead.
+     */
+    isDeadAnimation() {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.showGameOverScreen();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Plays the hurt animation when the character takes damage.
+     * @returns {boolean} - Returns true if the character is hurt.
+     */
+    isHurtAnimation() {
+        if (this.itHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.hurtSound.play();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Plays the jumping animation if the character is above the ground.
+     * @returns {boolean} - Returns true if the character is in the air.
+     */
+    isJumpingAnimation() {
+        if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+            this.standingTime = 0;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Plays the walking animation if the character is moving left or right.
+     * @returns {boolean} - Returns true if the character is walking.
+     */
+    isWalkingAnimation() {
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+            this.standingTime = 0;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Handles the character's idle animation when standing still for a long time.
+     */
     handleIdleAnimation() {
         this.standingTime += 300;
 
@@ -255,7 +316,7 @@ class Character extends MovableObject {
     }
 
     /**
-     * Makes the character react when it hits an enemy.
+     * Makes the character react when it hits an enemy by setting a bounce effect.
      */
     hitEnemy() {
         this.speedY = 20;
