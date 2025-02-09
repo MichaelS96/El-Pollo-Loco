@@ -200,31 +200,6 @@ class Character extends MovableObject {
     }
 
     /**
-    * Moves the character based on keyboard input and the current game state.
-    */
-    characterMoving() {
-        if (!gameRunning) return;
-        this.walkingSound.pause();
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-            this.moveRight();
-            this.otherDirection = false;
-        } else if (this.world.keyboard.LEFT && this.x > 0) {
-            this.moveLeft();
-            this.otherDirection = true;
-        }
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-            this.walkingSound.play();
-            this.standingTime = 0;
-        }
-        if (this.world.keyboard.UP && !this.isAboveGround()) {
-            this.jump();
-            this.standingTime = 0;
-            this.jumpSound.play();
-        }
-        this.world.camera_x = -this.x + 120;
-    }
-
-    /**
      * Handles the character's animation based on the current state (dead, hurt, jumping, walking, standing).
      */
     characterAnimation() {
