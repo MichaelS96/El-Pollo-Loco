@@ -90,7 +90,6 @@ function startGame() {
     hideLoadScreen();
 }
 
-
 /**
  * Initializes the game world by loading the level and setting up the canvas.
  */

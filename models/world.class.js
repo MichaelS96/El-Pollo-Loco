@@ -223,11 +223,9 @@ class World {
                 if (endboss.isColliding(bottle) && !bottle.hasHit) {  
                     endboss.hit(20); // Hier auch nur 20 Schaden
                     bottle.hasHit = true;  
-    
                     setTimeout(() => {
                         this.throwableObjects.splice(index, 1);
                     }, 200);
-    
                     if (!this.bossStatusBar.isVisible) {
                         this.bossStatusBar.isVisible = true;
                     }
@@ -241,18 +239,14 @@ class World {
      */
     draw() {
         if (!gameRunning) return;
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap([...this.level.backgroundObjects, ...this.level.clouds]);
         this.ctx.translate(-this.camera_x, 0);
-
         this.addToMap(this.statusBar);
         this.addToMap(this.coinStatusBar);
         this.addToMap(this.bottleStatusBar);
         if (this.bossStatusBar.isVisible) this.addToMap(this.bossStatusBar);
-
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap([...this.level.coins, ...this.level.enemies, ...this.level.endboss]);
         this.addToMap(this.character);
@@ -261,7 +255,6 @@ class World {
         this.checkCollisions();
         requestAnimationFrame(() => this.draw());
     }
-
 
     /**
      * Adds a list of objects to the game world canvas.
