@@ -186,17 +186,14 @@ class Character extends MovableObject {
         } else if (this.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
-        }
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        } if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.walkingSound.play();
             this.standingTime = 0;
-        }
-        if (this.world.keyboard.UP && !this.isAboveGround()) {
+        } if (this.world.keyboard.UP && !this.isAboveGround()) {
             this.jump();
             this.standingTime = 0;
             this.jumpSound.play();
-        }
-        this.world.camera_x = -this.x + 120;
+        } this.world.camera_x = -this.x + 120;
     }
 
     /**

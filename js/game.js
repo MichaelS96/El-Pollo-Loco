@@ -232,3 +232,13 @@ function goToHomeScreen() {
         document.getElementById('startScreen').classList.remove('d-none');
     }, 100);
 }
+
+
+
+
+
+//TODO . Sound button anpassen wenn ich Seite neulade und mute ist soll auch Mute angezeigt werden 
+//TODO . Vollbild nur anzeigen lassen wenn spiel laeuft da es denn canvas anzeigt 
+//TODO . Responsive kann gescrollt werden das fixxen 
+//TODO . Uncaught (in promise) AbortError: The play() request was interrupted by a call to pause(). Bei Neustart wenn ich mich bewege und canvas noch nciht geladen ist
+//TODO . In world.js Draw() methode zu viele Zeilen auf 14 anpassen / generell einmal alle methoden abchecken das zeilen bei <14 sind.
