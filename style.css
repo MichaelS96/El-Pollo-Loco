@@ -270,7 +270,7 @@ canvas {
     }
 
     canvas {
-        width: 100%;
+        width: 98%;
     }
 
     #startScreen img {
@@ -298,11 +298,11 @@ canvas {
 
 @media only screen and (max-height: 420px) {
     #content {
-        height: 100vh;
+        height: 100dvh;
     }
 
     canvas {
-        height: 100vh;
+        height: 98vh;
     }
 
     #startScreen img {
