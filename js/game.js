@@ -78,6 +78,10 @@ function startGame() {
     document.getElementById("startScreen").classList.add("d-none");
     canvas = document.getElementById('canvas');
 
+    // Buttons sichtbar machen
+    document.getElementById("soundToggle").classList.remove("d-none");
+    document.getElementById("FULLSCREEN").classList.remove("d-none");
+
     if (!canvas) {
         console.error("Canvas not found!");
         return;
@@ -86,7 +90,7 @@ function startGame() {
         gameRunning = true;
         init();
     }
-    
+
     hideLoadScreen();
 }
 

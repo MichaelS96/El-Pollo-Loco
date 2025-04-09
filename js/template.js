@@ -65,8 +65,8 @@ function loadTemplate() {
 
             <div class="overlay">
                 <img class="fullscreen-button" id="impressum" onclick="openImpressum()" src="./img/icons/impressum.png" alt="impressum icon">
-                <img class="fullscreen-button" id="soundToggle" onclick="toggleSound()" src="./img/icons/sound.png" alt="Sound Button">
-                <img class="fullscreen-button" id="FULLSCREEN" onclick="openFullscreen(document.getElementById('canvas'))" src="./img/icons/fullscreen.png" alt="Fullscreen Button">
+                <img class="fullscreen-button d-none" id="soundToggle" onclick="toggleSound()" src="./img/icons/sound.png" alt="Sound Button">
+                <img class="fullscreen-button d-none" id="FULLSCREEN" onclick="openFullscreen(document.getElementById('canvas'))" src="./img/icons/fullscreen.png" alt="Fullscreen Button">
                 <img class="fullscreen-button" id="homeScreen" onclick="goToHomeScreen()" src="./img/icons/homeScreen.png" alt="HomeScreenbtn">
             </div>
             
