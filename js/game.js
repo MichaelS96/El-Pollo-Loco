@@ -166,16 +166,18 @@ function hideLoadScreen() {
 
 /**
  * Enters fullscreen mode for the given element. Supports various browser implementations for fullscreen.
- * 
+ *
  * @param {HTMLElement} element - The DOM element to make fullscreen.
  */
 function enterFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-    } else if (element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    } else if (element.msRequestFullscreen) {    // for IE11 (remove June 15, 2022)
         element.msRequestFullscreen();
     } else if (element.webkitRequestFullscreen) {  // iOS Safari
         element.webkitRequestFullscreen();
+    } else if (element.mozRequestFullScreen) {   // Firefox
+        element.mozRequestFullScreen();
     }
 }
 
@@ -187,17 +189,28 @@ function exitFullscreen() {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {   // Firefox
+        document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {      // IE older
+        document.msExitFullscreen();
     }
 }
 
 /**
- * Toggles fullscreen mode by calling the enterFullscreen function for the given element.
- * 
+ * Toggles fullscreen mode for the specified element.
+ * If the document is currently in fullscreen, it exits.
+ * Otherwise, it requests fullscreen for the given element.
+ *
  * @param {HTMLElement} element - The DOM element to toggle fullscreen.
  */
 function openFullscreen(element) {
-    let fullscreen = document.getElementById('fullscreen');
-    enterFullscreen(element);
+    if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        // Wenn bereits im Vollbildmodus, diesen beenden
+        exitFullscreen();
+    } else {
+        // Ansonsten in den Vollbildmodus wechseln
+        enterFullscreen(element);
+    }
 }
 
 /**
@@ -236,13 +249,3 @@ function goToHomeScreen() {
         document.getElementById('startScreen').classList.remove('d-none');
     }, 100);
 }
-
-
-
-
-
-//TODO . Sound button anpassen wenn ich Seite neulade und mute ist soll auch Mute angezeigt werden 
-//TODO . Vollbild nur anzeigen lassen wenn spiel laeuft da es denn canvas anzeigt 
-//TODO . Responsive kann gescrollt werden das fixxen 
-//TODO . Uncaught (in promise) AbortError: The play() request was interrupted by a call to pause(). Bei Neustart wenn ich mich bewege und canvas noch nciht geladen ist
-//TODO . In world.js Draw() methode zu viele Zeilen auf 14 anpassen / generell einmal alle methoden abchecken das zeilen bei <14 sind.

@@ -20,6 +20,27 @@ canvas {
     border-radius: 10px;
 }
 
+#content:-webkit-full-screen canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+#content:-moz-full-screen canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+#content:fullscreen canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+#content:-ms-fullscreen canvas {
+    /* Für ältere IE-Versionen */
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
 .overlay {
     position: absolute;
     top: 10px;
@@ -36,6 +57,7 @@ canvas {
     width: 30px;
     height: 30px;
     cursor: pointer;
+    z-index: 1010;
 }
 
 #content {
@@ -141,7 +163,7 @@ canvas {
     font-size: 20px;
 }
 
-.mobileBTN{
+.mobileBTN {
     display: none;
     position: absolute;
     top: 75%;
@@ -154,7 +176,7 @@ canvas {
     padding: 5px;
 }
 
-.mobileBTN2{
+.mobileBTN2 {
     display: none;
     position: absolute;
     top: 75%;
@@ -167,7 +189,7 @@ canvas {
     padding: 5px;
 }
 
-.mobile-btn{
+.mobile-btn {
     display: none;
     width: 45px;
     height: 45px;
@@ -201,7 +223,7 @@ canvas {
     position: absolute;
     top: 50px;
     right: 20px;
-    width: 30px;  
+    width: 30px;
     height: 30px;
     cursor: pointer;
 }
